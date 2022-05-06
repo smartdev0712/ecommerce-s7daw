@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import RoomIcon from "@mui/icons-material/Room";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -10,18 +11,17 @@ const MobileMenu = () => {
       setActiveMenu(activeMenu === value ? "" : value),
     activeLi = (value) =>
       value === activeMenu ? { display: "block" } : { display: "none" };
-  const state = 'Alberta'
-  const location = 'Calgary'
+  const router = useRouter()
+  var state = "calgary"
+  var location = "alberta"
   const getDeliveryUrl = (e) => {
     const value = e.target.value
     const selectedItems = value.split(', ');
-    const state = selectedItems[1].toLowerCase()
-    const location = selectedItems[0].toLowerCase()
-    console.log(state, location)
-    // window.history.pushState(null, document.title,`/delivery/${state}/${location}`)
-    document.location.pathname=`/delivery/${state}/${location}`
-    return "ok"
+    state = selectedItems[1].toLowerCase()
+    location = selectedItems[0].toLowerCase()
+    router.push(`/delivery/${state}/${location}`)
   }
+
   return (
     <header className="header-area header-area-one d-xl-none">
       <div className="header-top">
@@ -57,7 +57,7 @@ const MobileMenu = () => {
                       <i style={{ zIndex: 1}}>
                         <RoomIcon />
                       </i>
-                      <select className="form_control" id="location" defaultValue="Banff, Alberta" onChange={getDeliveryUrl}>
+                      <select className="form_control" id="location" onChange={getDeliveryUrl}>
                         <option value="Calgary, Alberta">Calgary, Alberta</option>
                         <option value="Airdrie, Alberta">Airdrie, Alberta</option>
                         <option value="Banff, Alberta">Banff, Alberta</option>
@@ -129,7 +129,7 @@ const MobileMenu = () => {
                         </Link>
                       </li>
                       <li className="menu-item menu-content">
-                        <Link href="/delivery/state/location">
+                        <Link href={`/delivery/${state}/${location}`}>
                           <a>DELIVERIES</a>
                         </Link>
                       </li>

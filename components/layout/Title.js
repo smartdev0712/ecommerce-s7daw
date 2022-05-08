@@ -1,0 +1,39 @@
+import React, { useEffect, useState } from "react";
+import Head from "next/head";
+import { toCamelCase } from "../utils";
+
+const Title = () => {
+  const [state, setState] = useState("");
+  const [location, setLocation] = useState("");
+  const [service, setService] = useState("");
+  useEffect(() => {
+    const url = document.location.toString().split("/");
+    console.log(url);
+    let state = url[url.length - 3];
+    if (state.includes("%")) {
+      let stateItems = state.split("%20");
+      state = toCamelCase(stateItems[0]) + " " + toCamelCase(stateItems[1]);
+      console.log(state);
+      setState(state);
+    } else {
+      setState(toCamelCase(state));
+    }
+    setLocation(toCamelCase(url[url.length - 2]));
+    const service = url[url.length - 1];
+    let serviceItems = service.split("-");
+    let serviceUrl = '';
+    for (let i = 0; i < serviceItems.length; i++) {
+      serviceUrl += toCamelCase(serviceItems[i]) + " ";
+    }
+    setService(serviceUrl);
+  });
+  return (
+    <Head>
+      <title>
+        {service} in {location}, {state} - Flooring Metaverse
+      </title>
+    </Head>
+  );
+};
+
+export default Title;

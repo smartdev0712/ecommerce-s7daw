@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { Nav, Tab } from "react-bootstrap";
 import Slider from "react-slick";
-import PageBanner from "../../components/PageBanner";
+import PageBanner from "../../components/layout/PageBanner";
 import ProductSlider from "../../components/ProductSlider";
 import Layout from "../../components/layout/Layout";
 import { reletedProductSlider } from "../../components/sliderProps";
@@ -12,7 +12,6 @@ const ProductDetails = () => {
     <Layout>
       <PageBanner
         title={"Shop Single"}
-        background={"primaryStore.ab9d3fd0.png"}
       />
       <section className="product-details-section pt-120 pb-115">
         <div className="container">

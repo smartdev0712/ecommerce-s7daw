@@ -102,11 +102,17 @@ img.mfp-img {
   right: -24px;
 }
 .main-menu li.active > a,
-.header-navigation .main-menu ul li > a.active {
+.header-navigation .main-menu ul > li.has-children.active > a:after {
   color: #9ea137 !important;
   text-decoration: underline #9ea137;
 }
 .main-menu li.active > a,
 .header-navigation .main-menu ul > li > a:hover {
+  color: #9ea137 !important;
+  text-decoration: underline #9ea137;
+}
+
+.main-menu li.active > a,
+.header-navigation .main-menu ul > li > a.active {
   color: #9ea137 !important;
 }

@@ -28,7 +28,7 @@ const ListingDetailsRight = () => {
               <i className="ti-mobile" />
             </div>
             <div className="form_group">
-              <select className="wide">
+              <select className="wide form_control">
                 <option disabled selected>
                   Guest
                 </option>
@@ -39,7 +39,7 @@ const ListingDetailsRight = () => {
               </select>
             </div>
             <div className="form_group">
-              <select>
+              <select className="form_control">
                 <option disabled selected>
                   Date
                 </option>
@@ -50,7 +50,7 @@ const ListingDetailsRight = () => {
               </select>
             </div>
             <div className="form_group">
-              <select className="wide">
+              <select className="wide form_control">
                 <option disabled selected>
                   Time
                 </option>
@@ -93,28 +93,6 @@ const ListingDetailsRight = () => {
                   <a href="https://www.s7daw.com/">www.myWebsite.com</a>
                 </p>
               </div>
-              <ul className="social-link">
-                <li>
-                  <a href="#">
-                    <i className="ti-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="ti-twitter-alt" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="ti-pinterest" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="ti-dribbble" />
-                  </a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

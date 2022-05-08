@@ -8,7 +8,6 @@ const BlogDetails = () => {
     <Layout>
       <PageBanner
         title={"Blog Single"}
-        background={"mailOutsSecondary.77351a10.png"}
       />
       <section className="blog-area pt-120 pb-90">
         <div className="container">

@@ -8,7 +8,11 @@ const Footer = () => {
   return (
     <footer className="footer-area">
       <div className="footer-image">
-        <img src="/assets/images/appBannerMobile.c0cfb55b.png" style={{width:"100%", height:"auto"}} alt="footer" />
+        <img
+          src="/assets/images/flooring-banner.jpg"
+          style={{ width: "100%", height: "auto" }}
+          alt="footer"
+        />
         <div className="appStore">
           <a
             href="https://apps.apple.com/ca/app/s7daw/id1533319065?itsct=apps_box&itscg=30200"
@@ -36,19 +40,22 @@ const Footer = () => {
         <div className="footer-body row">
           <div className="body-area col-lg-9 col-sm-12 row">
             <img
-              src="/assets/images/logoFooter.b56fa9b9.svg"
-              alt="sdaw-footer-logo"
-              className="s7-image col-lg-3 col-sm-12 d-flex align-items-center justify-content-center"
+              src="/assets/images/flooringmetaverselogo.png"
+              alt="footer-logo"
+              className="s7-image col-lg-3 col-sm-12"
             />
             <div className="body-content col-lg-9 col-sm-12 row">
               <p className="body-content-top col-md-12 col-sm-12">
-                Seven Days A Weed (S7DAW) is your one-stop hub to discover
-                cannabis across Canada. We connect recreational and medical
-                cannabis users with the best weed dispensaries, weed deals,
-                brands, products, and information.
+                “Flooring Metaverse is your source for all flooring. Find stores
+                & contractors, read product & brand reviews, or learn how to
+                just about any flooring job you can think of! We have it all in
+                one place - the Flooring Metaverse!”
               </p>
-              <div className="body-content-bottom col-sm-12">
-                  <p style={{ color: "#9ea137" }}>LET &apos;S KEEP IN TOUCH.</p>
+              {/* <div className="body-content-bottom col-sm-12 row">
+                <p className="col-sm-6" style={{ color: "#9ea137" }}>
+                  LET &apos;S KEEP IN TOUCH.
+                </p>
+                <div className="col-sm-6 d-flex">
                   <a href="#" className="MuiIconButtonBase MuiIconButton">
                     <MailIcon style={{ fontSize: "2.185rem" }} />
                   </a>
@@ -58,7 +65,8 @@ const Footer = () => {
                   <a href="#" className="MuiIconButtonBase MuiIconButton">
                     <FacebookIcon style={{ fontSize: "2.185rem" }} />
                   </a>
-              </div>
+                </div>
+              </div> */}
             </div>
           </div>
           <div className="footer-menu col-lg-2 col-sm-12">
@@ -67,23 +75,23 @@ const Footer = () => {
               <Link href="/">
                 <a className="footer-menu-item">HOME</a>
               </Link>
-              <Link href="/delivery/state/location">
-                <a className="footer-menu-item">DELIVERIES</a>
+              <Link href="/ca/alberta/calgary/hardwood-floor-store">
+                <a className="footer-menu-item">HARDWOOD</a>
               </Link>
-              <Link href="/listing-name">
-                <a className="footer-menu-item">LISTS</a>
+              <Link href="/ca/alberta/calgary/laminate-flooring-store">
+                <a className="footer-menu-item">LAMINATE</a>
+              </Link>
+              <Link href="/ca/alberta/calgary/vinyl-floor-store">
+                <a className="footer-menu-item">VINYL</a>
+              </Link>
+              <Link href="/ca/alberta/calgary/tile-store">
+                <a className="footer-menu-item">TILE</a>
               </Link>
               <Link href="/brand">
                 <a className="footer-menu-item">BRANDS</a>
               </Link>
-              <Link href="/products/product">
-                <a className="footer-menu-item">PRODUCTS</a>
-              </Link>
-              <Link href="/maps">
-                <a className="footer-menu-item">MAPS</a>
-              </Link>
               <Link href="/blog/blog-category">
-                <a className="footer-menu-item">BLOGS</a>
+                <a className="footer-menu-item">BLOG</a>
               </Link>
             </p>
           </div>

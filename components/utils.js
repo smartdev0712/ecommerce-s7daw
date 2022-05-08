@@ -102,7 +102,12 @@ export const activeNavMenu = (path) => {
   navItem.forEach((nav) => {
     if (nav.pathname === window.location.pathname) {
       if (!nav.href.includes("#")) {
-        nav.className = "active";
+        if (nav.pathname === "/" || nav.pathname === "/blog/blog-category" || nav.pathname === "/brand") {
+          nav.className = "active";
+        } else {
+          let navContainer = nav.parentElement.parentElement.parentElement;
+          nav.parentElement.parentElement.parentElement.classList.add("active");
+        }
       }
     }
   });

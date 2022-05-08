@@ -5,7 +5,7 @@ import Header from "./Header";
 import MobileMenu from "./MobileMenu";
 import { activeNavMenu, animation, niceSelect, stickyNav } from "../utils";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, category }) => {
   useEffect(() => {
     animation();
     // niceSelect();
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
     <Fragment>
       <ImageView />
       <MobileMenu />
-      <Header />
+      <Header category={category} />
       {children} <Footer />
     </Fragment>
   );

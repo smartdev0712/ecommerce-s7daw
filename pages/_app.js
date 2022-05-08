@@ -15,7 +15,7 @@ const MyApp = ({ Component, pageProps }) => {
     <Fragment>
       <Head>
         <title>
-          Find Weed Dispensaries & Cannabis Delivery Near You | S7DAW
+          Find Flooring Stores & Contractors Near You | Flooring Metaverse
         </title>
         <link
           rel="shortcut icon"

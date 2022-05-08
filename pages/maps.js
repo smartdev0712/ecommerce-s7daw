@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { Nav, Tab } from "react-bootstrap";
-import PageBanner from "../components/PageBanner";
+import PageBanner from "../components/layout/PageBanner";
 import Layout from "../components/layout/Layout";
 
 const ListingMap = () => {
@@ -35,16 +35,14 @@ const ListingMap = () => {
                   </div>
                   <div className="col-lg-4 col-md-6 col-sm-12">
                     <div className="form_group">
-                      <select className="wide">
-                        <option data-dsplay="Category">Category</option>
-                        <option value={1}>Museums</option>
-                        <option value={2}>Restaurant</option>
-                        <option value={3}>Party Center</option>
-                        <option value={4}>Fitness Zone</option>
-                        <option value={5}>Game Field</option>
-                        <option value={6}>Job &amp; Feeds</option>
-                        <option value={7}>Shooping</option>
-                        <option value={8}>Art Gallery</option>
+                      <select className="wide form_control">
+                        <option selected disabled value={"Services"}>
+                            Services
+                        </option>
+                        <option value={1}>Hardwood</option>
+                        <option value={2}>Laminate</option>
+                        <option value={3}>Vinyl</option>
+                        <option value={4}>Tile</option>
                       </select>
                     </div>
                   </div>
@@ -62,7 +60,7 @@ const ListingMap = () => {
                   </div>
                   <div className="col-lg-3 col-md-6 col-sm-12">
                     <div className="form_group">
-                      <select className="wide">
+                      <select className="wide form_control">
                         <option data-dsplay="Location">Location</option>
                         <option value={1}>Ottawa</option>
                         <option value={2}>Rome</option>
@@ -78,7 +76,7 @@ const ListingMap = () => {
                   </div>
                   <div className="col-lg-3 col-md-6 col-sm-12">
                     <div className="form_group">
-                      <select className="wide">
+                      <select className="wide form_control">
                         <option data-dsplay="By Country">By Country</option>
 
                         <option value={1}>Canada</option>
@@ -95,7 +93,7 @@ const ListingMap = () => {
                   </div>
                   <div className="col-lg-3 col-md-6 col-sm-12">
                     <div className="form_group">
-                      <select className="wide">
+                      <select className="wide form_control">
                         <option data-dsplay="Default price">
                           Default price
                         </option>
@@ -169,11 +167,10 @@ const ListingMap = () => {
                               <option data-dsplay="Default Sorting">
                                 Default Sorting
                               </option>
-                              <option value={1}>Museums</option>
-                              <option value={2}>Restaurant</option>
-                              <option value={3}>Party Center</option>
-                              <option value={4}>Fitness Zone</option>
-                              <option value={5}>Game Field</option>
+                              <option value={1}>Hardwood</option>
+                              <option value={2}>Laminate</option>
+                              <option value={3}>Vinyl</option>
+                              <option value={4}>Tile</option>
                             </select>
                           </div>
                         </div>

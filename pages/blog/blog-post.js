@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import PageBanner from "../../components/PageBanner";
+import PageBanner from "../../components/layout/PageBanner";
 import Layout from "../../components/layout/Layout";
 
 const BlogDetails = () => {

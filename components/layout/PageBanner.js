@@ -29,11 +29,6 @@ const PageBanner = ({ pageName, title }) => {
   });
   return (
     <section className="hero-area">
-      <h1 className="MuiTypography-root MuiTypography-h1">
-        Find local {service} in {location} ready to serve you. <br />
-        Browse the best contractors near you, read reviews and learn more about
-        who’s available
-      </h1>
       <div
         className="breadcrumbs-wrapper"
         style={{
@@ -46,21 +41,19 @@ const PageBanner = ({ pageName, title }) => {
             <div className="col-lg-12">
               <div className="page-title">
                 <h1 className="MuiTypography-root MuiTypography-h1">
-                  Find local {service} in {location} ready to serve you. <br />
-                  Browse the best contractors near you, read reviews and learn
-                  more about who’s available
+                  {service} in {location}
                 </h1>
-                {/* <ul className="breadcrumbs-link btn-root">
-                  <li>
-                    <Link href="/">Home</Link>
-                  </li>
-                  <li className="active">{pageName ? pageName : title}</li>
-                </ul> */}
               </div>
             </div>
           </div>
         </div>
       </div>
+      <h4 className="MuiTypography-body mt-4 mx-4">
+        Find the best local {" "}
+        <strong style={{ color: "green" }}>
+          {service} in {location}
+        </strong>
+      </h4>
     </section>
   );
 };

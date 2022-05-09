@@ -8,12 +8,10 @@ const PageBanner = ({ pageName, title }) => {
   const [service, setService] = useState("");
   useEffect(() => {
     const url = document.location.toString().split("/");
-    console.log(url);
     let state = url[url.length - 3];
     if (state.includes("%")) {
       let stateItems = state.split("%20");
       state = toCamelCase(stateItems[0]) + " " + toCamelCase(stateItems[1]);
-      console.log(state);
       setState(state);
     } else {
       setState(toCamelCase(state));

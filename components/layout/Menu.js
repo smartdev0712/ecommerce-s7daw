@@ -101,6 +101,30 @@ export const Tile = () => (
     </li>
   </Fragment>
 );
+export const Carpet = () => (
+  <Fragment>
+    <li className="menu-item">
+      <Link href={`/ca/alberta/calgary/carpet-installer`}>
+        <a>Carpet Installer</a>
+      </Link>
+    </li>
+    <li className="menu-item">
+      <Link href={`/ca/alberta/calgary/carpet-cleaning`}>
+        <a>Carpet Cleaning</a>
+      </Link>
+    </li>
+    <li className="menu-item">
+      <Link href={`/ca/alberta/calgary/carpet-store`}>
+        <a>Carpet Store</a>
+      </Link>
+    </li>
+    <li className="menu-item">
+      <Link href={`/ca/alberta/calgary/carpet-repair`}>
+        <a>Carpet Repair</a>
+      </Link>
+    </li>
+  </Fragment>
+);
 export const Brands = () => (
   <Fragment>
     <li className="menu-item">

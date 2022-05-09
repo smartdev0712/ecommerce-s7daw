@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { toCamelCase } from "./utils";
 import Title from "./layout/Title";
-import PageBanner from "./layout/PageBanner";
+import BrandComponent from './Brand/Brand';
 import ProductComponent from './Product/ProductComponent'
 
 const ProductTemplate = () => {
@@ -10,12 +9,10 @@ const ProductTemplate = () => {
   const [location, setLocation] = useState("");
   useEffect(() => {
     const url = document.location.toString().split("/");
-    console.log(url);
     let state = url[url.length - 3];
     if (state.includes("%")) {
       let stateItems = state.split("%20");
       state = toCamelCase(stateItems[0]) + " " + toCamelCase(stateItems[1]);
-      console.log(state);
       setState(state);
     } else {
       setState(toCamelCase(state));
@@ -28,7 +25,7 @@ const ProductTemplate = () => {
         <img
           src="/assets/images/flooring-banner.jpg"
           width="100%"
-          height="100%"
+          style={{height: "100%"}}
           alt="home-header"
         />
         <div className="home-header-content">
@@ -46,7 +43,7 @@ const ProductTemplate = () => {
           {location}, {state}
         </strong>
       </h4>
-      <ProductComponent />
+      <BrandComponent />
     </>
   );
 };

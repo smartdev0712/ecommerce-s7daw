@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { Home, Hardwood, Laminate, Vinyl, Tile, Brands, Blog } from "./Menu";
+import { Home, Hardwood, Laminate, Vinyl, Tile, Carpet, Brands, Blog } from "./Menu";
 import RoomIcon from "@mui/icons-material/Room";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -20,7 +20,12 @@ const MobileMenu = () => {
     const selectedItems = value.split(', ');
     state = selectedItems[1].toLowerCase()
     location = selectedItems[0].toLowerCase()
-    router.push(`delivery/ca/${state}/${location}`)
+    if (category !== undefined) {
+      router.push(`/ca/${state}/${location}/${category}`);
+    }
+    else {
+      router.push('#')
+    }
   }
 
   return (
@@ -104,6 +109,20 @@ const MobileMenu = () => {
                         <span
                           className="dd-trigger"
                           onClick={() => activeMenuSet("Tile")}
+                        >
+                          <i className="ti-arrow-down"></i>
+                        </span>
+                      </li>
+                      <li className="menu-item has-children">
+                        <Link href="#">
+                          <a>Carpet</a>
+                        </Link>
+                        <ul className="sub-menu" style={activeLi("Carpet")}>
+                          <Carpet />
+                        </ul>
+                        <span
+                          className="dd-trigger"
+                          onClick={() => activeMenuSet("Carpet")}
                         >
                           <i className="ti-arrow-down"></i>
                         </span>

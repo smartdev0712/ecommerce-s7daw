@@ -2,25 +2,66 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { Home, Hardwood, Laminate, Vinyl, Tile, Brands, Blog } from "./Menu";
+import { Home, Hardwood, Laminate, Vinyl, Tile, Carpet, Brands, Blog } from "./Menu";
 import RoomIcon from "@mui/icons-material/Room";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Header = ({category}) => {
+const Header = ({ category }) => {
   const router = useRouter();
   var state = "calgary";
   var location = "alberta";
   const getDeliveryUrl = (e) => {
     const value = e.target.value;
     const selectedItems = value.split(", ");
-    state = selectedItems[1].toLowerCase();
-    location = selectedItems[0].toLowerCase();
-    console.log(state, location);
-    if (category !== undefined) {
-      router.push(`/ca/${state}/${location}/${category}`);
+    let abbreviation = "";
+    state = selectedItems[1];
+    switch (state) {
+      case "Alberta":
+        abbreviation = "ab";
+        break;
+      case "British Columbia":
+        abbreviation = "bc";
+        break;
+      case "Manitoba":
+        abbreviation = "mb";
+        break;
+      case "New Brunswick":
+        abbreviation = "nb";
+        break;
+      case "Newfoundland and Labrador":
+        abbreviation = "nl";
+        break;
+      case "Northwest Territories":
+        abbreviation = "nt";
+        break;
+      case "Nova Scotia":
+        abbreviation = "ns";
+        break;
+      case "Nunavut":
+        abbreviation = "nu";
+        break;
+      case "Ontario":
+        abbreviation = "on";
+        break;
+      case "Prince Edward Island":
+        abbreviation = "pe";
+        break;
+      case "Quebec":
+        abbreviation = "qc";
+        break;
+      case "Saskatchewan":
+        abbreviation = "sk";
+        break;
+      case "Yukon":
+        abbreviation = "yt";
+        break;
     }
-    else {
-      router.push('#')
+
+    location = selectedItems[0].toLowerCase();
+    if (category !== undefined) {
+      router.push(`/ca/${abbreviation}/${location}/${category}`);
+    } else {
+      router.push("#");
     }
   };
 
@@ -81,6 +122,14 @@ const Header = ({category}) => {
                         </Link>
                         <ul className="sub-menu">
                           <Tile />
+                        </ul>
+                      </li>
+                      <li className="menu-item has-children">
+                        <Link href="#">
+                          <a>Carpet</a>
+                        </Link>
+                        <ul className="sub-menu">
+                          <Carpet />
                         </ul>
                       </li>
                       <Brands />

@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="footer-image">
         <img
           src="/assets/images/flooring-banner.jpg"
-          style={{ width: "100%", height: "auto" }}
+          width = "100%"
           alt="footer"
         />
         <div className="appStore">

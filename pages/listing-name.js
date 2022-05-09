@@ -6,7 +6,6 @@ import ReCaptcha from "react-google-recaptcha";
 const AddListing = () => {
   return (
     <Layout>
-      <PageBanner title={"Add Listing"} pageName={"Listing"} />
       <section className="add-listing pt-120 pb-120">
         <div className="container">
           <form onSubmit={(e) => e.preventDefault()}>
@@ -116,7 +115,25 @@ const AddListing = () => {
                         <div className="single-checkbox d-flex">
                           <input type="radio" id="check2" name="radio" />
                           <label htmlFor="check2">
-                            <span>Services</span>
+                            <span>Hardwood</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="radio" id="check3" name="radio" />
+                          <label htmlFor="check3">
+                            <span>Laminate</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="radio" id="check4" name="radio" />
+                          <label htmlFor="check4">
+                            <span>Vinyl</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="radio" id="check5" name="radio" />
+                          <label htmlFor="check5">
+                            <span>Tile</span>
                           </label>
                         </div>
                       </div>
@@ -258,7 +275,7 @@ const AddListing = () => {
                   </div>
                 </div>
                 <ReCaptcha
-                  sitekey="6Lczec8fAAAAAOFUUm1Wko55wnpUqYKyqewCHlcl"
+                  sitekey="6LfPitYfAAAAAPUGdaJjX2aUcA5iJ_eC7NaP2zcp"
                   // onChange={handleVerifyRecaptcha}
                   theme="dark"
                 />

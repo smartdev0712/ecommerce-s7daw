@@ -3,11 +3,11 @@ import React from "react";
 import Layout from "../../../../components/layout/Layout";
 import ProductTemplate from "../../../../components/productTemplate";
 
-const Products = () => {
+const LaminateStore = () => {
   return (
     <Layout category={"laminate-floor-store"}>
       <ProductTemplate />
     </Layout>
   );
 };
-export default Products;
+export default LaminateStore;

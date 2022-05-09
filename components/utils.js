@@ -98,7 +98,6 @@ export const niceSelect = () => {
 
 export const activeNavMenu = (path) => {
   const navItem = document.querySelectorAll(".main-menu li a");
-  console.log(navItem);
   navItem.forEach((nav) => {
     if (nav.pathname === window.location.pathname) {
       if (!nav.href.includes("#")) {

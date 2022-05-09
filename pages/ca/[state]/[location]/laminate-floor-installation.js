@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../../../components/layout/Layout";
 import ServiceTemplate from "../../../../components/serviceTemplate";
 
-const DeliveryIndex = () => {
+const LaminateInstallation = () => {
   return (
     <Layout category={"laminate-floor-installation"}>
       <ServiceTemplate />
@@ -10,4 +10,4 @@ const DeliveryIndex = () => {
   );
 };
 
-export default DeliveryIndex;
+export default LaminateInstallation;

@@ -12,7 +12,7 @@ const Index = () => {
         <img
           src="/assets/images/flooring-banner.jpg"
           width="100%"
-          height="100%"
+          style={{height: "100%"}}
           alt="home-header"
         />
         <div className="home-header-content">

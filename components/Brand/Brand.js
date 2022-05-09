@@ -4,7 +4,7 @@ import React from "react";
 
 const BrandComponent = () => {
   return (
-    <section className="products-area pt-120 pb-120">
+    <section className="products-area pt-50 pb-100">
       <div className="container">
         <div className="products-filter mb-30">
           <div className="row justify-content-between align-items-center">

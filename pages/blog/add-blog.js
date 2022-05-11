@@ -13,10 +13,7 @@ const AddBlog = () => {
     const title = e.target.title.value;
     const content = e.target.content.value;
     const description = e.target.summary.value;
-    const image = e.target.blogImage.value;
-    const newImageItems = image.split("\\")
-    const imageItem = newImageItems[newImageItems.length - 1]
-    const newImage = "/uploads/" + imageItem
+    const image = e.target.blogImage.files[0];
     const category = document.querySelector(
       'input[name="radio"]:checked'
     ).value;
@@ -29,20 +26,31 @@ const AddBlog = () => {
     });
     const authorRes = await fetchAPI("/writers", {
       filters: {
-        name: "Green Wood",
+        name: "David Doe",
       },
-      populate: "name",
     });
 
-    await http.post("/articles", {
+    var imageID = ""
+    let file = new FormData();
+    file.append("files", image)
+    await http.post('/api/upload',file)
+      .then((response) => {
+        imageID = response.data[0].id
+        console.log(imageID)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+    await http.post("/api/articles", {
         "data": {
             "title": title,
             "description": description,
             "content": content,
             "slug": slug,
+            "image": imageID,
+            "writer": authorRes.data[0],
             "category": categoryRes.data[0],
-            "author": authorRes.data[0],
-            "image": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
           }
     });
 

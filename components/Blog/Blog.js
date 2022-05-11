@@ -63,7 +63,7 @@ const Blog = ({ articles, categories }) => {
                             <li>
                               <span>
                                 <i className="ti-id-badge" />
-                                <a href="#">By {article.attributes.author.data.attributes.name}</a>
+                                <a href="#">By {article.attributes.writer.data.attributes.name}</a>
                               </span>
                             </li>
                           </ul>

@@ -69,7 +69,7 @@ const BlogDetails = ({ article, categories }) => {
                             <i className="ti-id-badge" />
                             <a href="#">
                               By{" "}
-                              {article.attributes.author.data.attributes.name}
+                              {article.attributes.writer.data.attributes.name}
                             </a>
                           </span>
                         </li>
@@ -96,13 +96,13 @@ const BlogDetails = ({ article, categories }) => {
                       data-uk-grid="true"
                     >
                       <div>
-                        {article.attributes.author.data.attributes.picture && (
+                        {article.attributes.writer.data.attributes.picture && (
                           <img
                             src={getStrapiMedia(
-                              article.attributes.author.data.attributes.picture
+                              article.attributes.writer.data.attributes.picture
                             )}
                             alt={
-                              article.attributes.author.data.attributes.picture
+                              article.attributes.writer.data.attributes.picture
                                 .data.attributes.alternativeText
                             }
                             style={{
@@ -115,7 +115,7 @@ const BlogDetails = ({ article, categories }) => {
                       </div>
                       <div className="uk-width-expand">
                         <p className="uk-margin-remove-bottom">
-                          By {article.attributes.author.data.attributes.name}
+                          By {article.attributes.writer.data.attributes.name}
                         </p>
                         <p className="uk-text-meta uk-margin-remove-top">
                           <Moment format="MMM Do YYYY">
@@ -431,7 +431,7 @@ export async function getStaticProps({ params }) {
     filters: {
       slug: params.slug,
     },
-    populate: ["image", "category", "author.picture"],
+    populate: ["image", "category", "writer.picture"],
   });
 
   const categories = await fetchAPI("/categories");

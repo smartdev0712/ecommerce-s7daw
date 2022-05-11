@@ -55,7 +55,7 @@ const ImgViews = ({ close, src }) => {
   );
 };
 
-const ImageView = () => {
+const ImageV = () => {
   const [img, setImg] = useState(false);
   const [imgValue, setImgValue] = useState(null);
 
@@ -77,4 +77,4 @@ const ImageView = () => {
     </Fragment>
   );
 };
-export default ImageView;
+export default ImageV;

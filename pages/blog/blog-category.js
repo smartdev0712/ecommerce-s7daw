@@ -1,10 +1,13 @@
 import React from "react";
 import Layout from "../../components/layout/Layout";
 import Blog from "../../components/Blog/Blog";
+import { fetchAPI } from "../../lib/api";
+import Seo from '../../components/seo'
 
-const blog = () => {
+const blog = ({ articles, categories, homepage }) => {
   return (
     <Layout>
+      <Seo seo={homepage.attributes.seo} />
       <div className="home-header">
         <img
           src="/assets/images/flooring-banner.jpg"
@@ -20,8 +23,32 @@ const blog = () => {
           </div>
         </div>
       </div>
-      <Blog />
+      <Blog articles={articles} categories={categories} />
     </Layout>
   );
 };
+
+export async function getStaticProps() {
+  // Run API calls in parallel
+  const [articleRes, categoryRes, homepageRes] = await Promise.all([
+    fetchAPI("/articles", { populate: ["image", "category", "author"] }),
+    fetchAPI("/categories", { populate: "*" }),
+    fetchAPI("/homepage", {
+      populate: {
+        hero: "*",
+        seo: { populate: "*" },
+      },
+    }),
+  ]);
+
+  return {
+    props: {
+      articles: articleRes.data,
+      categories: categoryRes.data,
+      homepage: homepageRes.data,
+    },
+    revalidate: 1,
+  };
+}
+
 export default blog;

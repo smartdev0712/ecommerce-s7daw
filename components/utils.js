@@ -117,3 +117,8 @@ export const toCamelCase = (str) => {
     return index === 0 ? word.toUpperCase() : word.toLowerCase();
   }).replace(/\s+/g, '');
 }
+
+export const getSlug = (str) => {
+  const newStr = str.toLowerCase();
+  return newStr.replaceAll(" ", "-")
+}

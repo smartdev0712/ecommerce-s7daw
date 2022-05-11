@@ -1,14 +1,43 @@
 import Link from "next/link";
+import Moment from "react-moment";
+import ReactMarkdown from "react-markdown";
 import React from "react";
-import PageBanner from "../../components/layout/PageBanner";
-import Layout from "../../components/layout/Layout";
 
-const BlogDetails = () => {
+import Layout from "../../components/layout/Layout";
+import Seo from "../../components/seo";
+import { fetchAPI } from "../../lib/api";
+import { getStrapiMedia } from "../../lib/media";
+
+const BlogDetails = ({ article, categories }) => {
+  const imageUrl = getStrapiMedia(article.attributes.image);
+
+  const seo = {
+    metaTitle: article.attributes.title,
+    metaDescription: article.attributes.description,
+    shareImage: article.attributes.image,
+    article: true,
+  };
   return (
     <Layout>
-      <PageBanner
-        title={"Blog Single"}
-      />
+      <Seo seo={seo} />
+      <div className="home-header">
+        <img
+          src="/assets/images/flooring-banner.jpg"
+          width="100%"
+          style={{ height: "100%" }}
+          alt="home-header"
+        />
+        <div className="home-header-content">
+          <div className="home-header-body">
+            <h1
+              style={{ width: "80%" }}
+              className="MuiTypography-root MuiTypography-h1 MuiTypography-alignLeft"
+            >
+              Our Blogs
+            </h1>
+          </div>
+        </div>
+      </div>
       <section className="blog-area pt-120 pb-90">
         <div className="container">
           <div className="row">
@@ -16,10 +45,7 @@ const BlogDetails = () => {
               <div className="blog-details-wrapper mb-30 wow fadeInUp">
                 <div className="blog-post-item">
                   <div className="post-thumbnail">
-                    <img
-                      src="/assets/images/blog/blog-single-1.jpg"
-                      alt="Blog Image"
-                    />
+                    <img src={imageUrl} alt="Blog Image" />
                   </div>
                   <div className="entry-content">
                     <div className="post-meta">
@@ -27,7 +53,9 @@ const BlogDetails = () => {
                         <li>
                           <span>
                             <i className="ti-bookmark-alt" />
-                            <a href="#">Tours &amp; Travel</a>
+                            <a href="#">
+                              {article.attributes.category.data.attributes.name}
+                            </a>
                           </span>
                         </li>
                         <li>
@@ -39,131 +67,71 @@ const BlogDetails = () => {
                         <li>
                           <span>
                             <i className="ti-id-badge" />
-                            <a href="#">By admin</a>
+                            <a href="#">
+                              By{" "}
+                              {article.attributes.author.data.attributes.name}
+                            </a>
                           </span>
                         </li>
                         <li>
                           <span>
                             <i className="ti-calendar" />
-                            <a href="#">02 Sep, 2021</a>
+                            <a href="#">
+                              <Moment format="MMM Do YYYY">
+                                {article.attributes.published_at}
+                              </Moment>
+                            </a>
                           </span>
                         </li>
                       </ul>
                     </div>
-                    <h3 className="title">Duis nonumer socios gem mattis</h3>
+                    <h3 className="title">{article.attributes.title}</h3>
                     <p>
-                      Penatibus cursus Luctus taciti nibheren congue
-                      sollicitudin placerat an tempus turpis magnis tempus inte
-                      vivamus rhoncus roin habitasse diam mattis vivamus per.
-                      Neque nibh purus, donec taciti donec parturient Nec neque
-                      facilisi etiam nibh urna taciti tortor auctor ullamcorper
-                      ridiculus hendrerit duis accumsan iaculis elit per gravida
-                      vel gravida magnis pretium hac litora eu molestie aptent.
-                      Eget mollis vehicula cursus ate netus iaculis vel praesent
-                      aliquam malesuada faucibus in{" "}
-                      <span className="highlight">condimentum</span> egestas
-                      vivamus quisque condimen tum purus dapibus accumsan fames
-                      nisi dapibus ultrices velit urna. Enim fats etiam
-                      elementum ipsum sem netus dapibus molestie dictum aenean.
-                      Montes ridiculus bibendum malesuada cras nisi nibh
-                      porttitor site facilisi lacinia consequat integer sed
-                      mattis nec ultricies vulputate velit congue pede nceptos
-                      elit vulputat metus suspendisse faller the sociology
-                      nullam.
+                      <ReactMarkdown>
+                        {article.attributes.content}
+                      </ReactMarkdown>
                     </p>
-                    <p>
-                      pretium hac litora eu{" "}
-                      <span className="highlight">molestie</span> aptent. Eget
-                      mollis vehicula cursus ated netus iaculis vel praesent
-                      aliquam malesuada faucibus in condimentum egestas vivamus
-                      quisque condimen drutum purus dapibus accumsan fames nisi
-                      dapibus ultrices velit urna. Enim fats etiam elementum
-                      ipsum sem netus dapibus fallen molestie dictum aenean.
-                      Montes ridiculus{" "}
-                      <span className="highlight">bibendum</span> malesuada cras
-                      nis nibh porttitor site facilisi lacinia consequat integer
-                      sed mattis nec ultricies vulputate velit congue pede
-                      nceptos elit vulputat{" "}
-                    </p>
-                    <h4>Traveling is the spice of life</h4>
-                    <p>
-                      Suspendisse malesuada felis diam arcu sed velit nisi
-                      auctor dolor tempor phasellus varius nisl elit donece
-                      malesuada suscipit ide natoque commodo dictumst facilisi
-                      risus vehicula iaculis dolor ener ligula bibendum
-                      Dignissim, nunc vulputate. Fringilla porta conubia neque
-                      eros lacinia hymenaeos dictumst placerat sed cum vivamus
-                      tellus consequat magnis dis auctor hymenaeos turpis et
-                      metus orci aliquet fermentum tincidunt parturient eget
-                      montes convallis nunc lacus feugiat nonummy
-                    </p>
-                    <blockquote className="fioxen-blockquote text-center">
-                      <img src="/assets/images/quote-1.png" alt="quote" />
-                      <h5>
-                        Eleifend metus commodo taciti purus dictum porttitor
-                        etiam condimen blandit lacus libero tristique donec
-                        ornarehac{" "}
-                      </h5>
-                      <h6>Emelie Marchent</h6>
-                    </blockquote>
-                    <p>
-                      Malesuada felis diam arcu sed velit nisi auctor an dolor
-                      tempor phasellus varius nisl elit donece malesuada
-                      suscipit ide natoque commodo dictumst facilisi risus
-                      vehicula iaculis dolor ener to ligula bibendum digniss
-                      imergen from the nunc vulputate fringilla porta conubia
-                      neque eros lacinia hymenaeos dictumst placerat sed cum
-                      vivamus tellus consequat magnis dis auctor hymenaeos
-                      turpis et metus orci th aliquet fermentum tincidunt
-                      parturient eget montes convallis nunc lacus feugiat
-                      nonummy sociis phasellus etiam auctor inte justo semper
-                      volutpat mi morbi ornare ultrices vehicula augue
-                      parturient placerat{" "}
-                    </p>
-                    <h4>We make dreams come true!</h4>
-                    <p>
-                      Ligula bibendum digniss imergen from the nunc vulputate
-                      fringilla porta conubia neque eros lacinia hymenaeos
-                      dictumst placerat sed cum vivamus tellus consequat magnis
-                      dis auctor hymenaeos turpis et metus orci th aliquet
-                      fermentum tincidunt parturient eget montes convallis nunc
-                      lacus feugiat nonummy sociis phasellus etiam auctor inte
-                      justo semper volutpat mi morbi ornare
-                    </p>
-                    <div className="content-img">
-                      <img
-                        src="/assets/images/blog/blog-single-2.jpg"
-                        alt="Blog Image"
-                      />
+                    <div
+                      className="uk-grid-small uk-flex-left"
+                      data-uk-grid="true"
+                    >
+                      <div>
+                        {article.attributes.author.data.attributes.picture && (
+                          <img
+                            src={getStrapiMedia(
+                              article.attributes.author.data.attributes.picture
+                            )}
+                            alt={
+                              article.attributes.author.data.attributes.picture
+                                .data.attributes.alternativeText
+                            }
+                            style={{
+                              position: "static",
+                              borderRadius: "20%",
+                              height: 60,
+                            }}
+                          />
+                        )}
+                      </div>
+                      <div className="uk-width-expand">
+                        <p className="uk-margin-remove-bottom">
+                          By {article.attributes.author.data.attributes.name}
+                        </p>
+                        <p className="uk-text-meta uk-margin-remove-top">
+                          <Moment format="MMM Do YYYY">
+                            {article.attributes.published_at}
+                          </Moment>
+                        </p>
+                      </div>
                     </div>
-                    <p>
-                      Consequat magnis dis auctor hymenaeos turpis et metus orci
-                      th aliquet fermentum tincidunt parturient eget montes
-                      convallis nunc lacus feugiat nonummy sociis phasellus
-                      etiam auctor inte justo semper voluter pat mi morbi ornare
-                      nunc{" "}
-                    </p>
-                    <ul className="list">
-                      <li className="item">
-                        Class Lorem convallis nibh quam te enim consectetuer
-                        nunc nisi interdum mollis risu per ultricies nulla
-                        nostra tortor primis libero elementum nunc pede enim
-                      </li>
-                      <li className="item">
-                        Nnunc nisi interdum mollis risu per ultricies nulla
-                        nostra tortor primis libero elementum nunc pede
-                      </li>
-                      <li className="item">
-                        Adipiscing mattis dis risus rutrum feugiat maecenas nunc
-                        nullam congue pe placerat potenti hendreri felis odio ad
-                        dignissim posuere.
-                      </li>
-                    </ul>
                     <div className="post-tag">
-                      <a href="#">Feature</a>
-                      <a href="#">Tourism</a>
-                      <a href="#">Job &amp; Feed</a>
-                      <a href="#">Musemus</a>
+                      {categories.data.map((category, index) => {
+                        return (
+                          <a key={index} href="#">
+                            {category.attributes.name}
+                          </a>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -444,4 +412,33 @@ const BlogDetails = () => {
     </Layout>
   );
 };
+
+export async function getStaticPaths() {
+  const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
+
+  return {
+    paths: articlesRes.data.map((article) => ({
+      params: {
+        slug: article.attributes.slug,
+      },
+    })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const articlesRes = await fetchAPI("/articles", {
+    filters: {
+      slug: params.slug,
+    },
+    populate: ["image", "category", "author.picture"],
+  });
+
+  const categories = await fetchAPI("/categories");
+
+  return {
+    props: { article: articlesRes.data[0], categories: categories },
+    revalidate: 1,
+  };
+}
 export default BlogDetails;

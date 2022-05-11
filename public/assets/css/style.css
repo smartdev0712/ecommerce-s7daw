@@ -2962,6 +2962,7 @@ ul.ratings li {
   box-shadow: 3.09px 9.511px 28.2px 1.8px rgba(30, 33, 62, 0.1);
   margin-right: 15px;
   border-radius: 50%;
+  border: 1px solid #a4a4a4;
 }
 
 .single-checkbox label:after {

@@ -341,7 +341,7 @@ const AddListing = () => {
                   </div>
                 </div>
                 <ReCaptcha
-                  sitekey="6Lczec8fAAAAAOFUUm1Wko55wnpUqYKyqewCHlcl"
+                  sitekey="6LfPitYfAAAAAPUGdaJjX2aUcA5iJ_eC7NaP2zcp"
                   // onChange={handleVerifyRecaptcha}
                   theme="dark"
                 />

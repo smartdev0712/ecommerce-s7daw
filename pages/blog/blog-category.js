@@ -31,7 +31,7 @@ const blog = ({ articles, categories, homepage }) => {
 export async function getStaticProps() {
   // Run API calls in parallel
   const [articleRes, categoryRes, homepageRes] = await Promise.all([
-    fetchAPI("/articles", { populate: ["image", "category", "writer"] }),
+    fetchAPI("/articles", { populate: "*" }),
     fetchAPI("/categories", { populate: "*" }),
     fetchAPI("/homepage", {
       populate: {

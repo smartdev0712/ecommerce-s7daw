@@ -139,11 +139,11 @@ const BlogDetails = ({ article, categories }) => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="prev-post post-nav-item">
-                        <Link href="/blog/blog-post">
+                        <Link href="#">
                           <a className="btn-link">Previous Post</a>
                         </Link>
                         <h5>
-                          <Link href="/blog/blog-post">
+                          <Link href="#">
                             <a>Felis feugiat tellus puruse dui lectus nisi</a>
                           </Link>
                         </h5>
@@ -151,11 +151,11 @@ const BlogDetails = ({ article, categories }) => {
                     </div>
                     <div className="col-md-6">
                       <div className="next-post post-nav-item">
-                        <Link href="/blog/blog-post">
+                        <Link href="#">
                           <a className="btn-link">Next Post</a>
                         </Link>
                         <h5>
-                          <Link href="/blog/blog-post">
+                          <Link href="#">
                             <a>dapibus luctus do gravida feugiat fermtum</a>
                           </Link>
                         </h5>
@@ -342,7 +342,7 @@ const BlogDetails = ({ article, categories }) => {
                           <a href="#">02 Sep - 2021</a>
                         </span>
                         <h6>
-                          <Link href="/blog/blog-post">
+                          <Link href="#">
                             <a>Inceptos pharetra accusan tusto scelerisque</a>
                           </Link>
                         </h6>
@@ -360,7 +360,7 @@ const BlogDetails = ({ article, categories }) => {
                           <a href="#">02 Sep - 2021</a>
                         </span>
                         <h6>
-                          <Link href="/blog/blog-post">
+                          <Link href="#">
                             <a>Inceptos pharetra accusan tusto scelerisque</a>
                           </Link>
                         </h6>
@@ -378,7 +378,7 @@ const BlogDetails = ({ article, categories }) => {
                           <a href="#">02 Sep - 2021</a>
                         </span>
                         <h6>
-                          <Link href="/blog/blog-post">
+                          <Link href="#">
                             <a>Inceptos pharetra accusan tusto scelerisque</a>
                           </Link>
                         </h6>

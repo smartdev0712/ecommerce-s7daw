@@ -188,7 +188,7 @@ const Blog = ({ articles, categories }) => {
                           <a href="#">02 Sep - 2021</a>
                         </span>
                         <h6>
-                          <Link href="/blog/blog-post">
+                          <Link href="#">
                             <a>Inceptos pharetra accusan tusto scelerisque</a>
                           </Link>
                         </h6>
@@ -206,7 +206,7 @@ const Blog = ({ articles, categories }) => {
                           <a href="#">02 Sep - 2021</a>
                         </span>
                         <h6>
-                          <Link href="/blog/blog-post">
+                          <Link href="#">
                             <a>Inceptos pharetra accusan tusto scelerisque</a>
                           </Link>
                         </h6>
@@ -224,7 +224,7 @@ const Blog = ({ articles, categories }) => {
                           <a href="#">02 Oct - 2021</a>
                         </span>
                         <h6>
-                          <Link href="/blog/blog-post">
+                          <Link href="#">
                             <a>Inceptos pharetra accusan tusto scelerisque</a>
                           </Link>
                         </h6>

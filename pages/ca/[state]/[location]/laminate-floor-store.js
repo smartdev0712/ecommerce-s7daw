@@ -6,7 +6,7 @@ import ProductTemplate from "../../../../components/productTemplate";
 const LaminateStore = () => {
   return (
     <Layout category={"laminate-floor-store"}>
-      <ProductTemplate />
+      <ProductTemplate category={"Laminate Floor Store"}/>
     </Layout>
   );
 };

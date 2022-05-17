@@ -6,10 +6,10 @@ import PageBanner from "./layout/PageBanner";
 import BrandComponent from './Brand/Brand';
 import ServiceTemplateFooter from './serviceTemplateFooter'
 
-const ServiceTemplate = () => {
+const ServiceTemplate = ({ category }) => {
   return (
     <>
-      <PageBanner />
+      <PageBanner category={category} />
       <Title />
       <BrandComponent />
       <ServiceTemplateFooter />

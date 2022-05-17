@@ -5,7 +5,7 @@ import { Home, Hardwood, Laminate, Vinyl, Tile, Carpet, Brands, Blog } from "./M
 import RoomIcon from "@mui/icons-material/Room";
 import SearchIcon from "@mui/icons-material/Search";
 
-const MobileMenu = () => {
+const MobileMenu = ({ category }) => {
   const [toggle, setToggle] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
   const activeMenuSet = (value) =>
@@ -13,20 +13,29 @@ const MobileMenu = () => {
     activeLi = (value) =>
       value === activeMenu ? { display: "block" } : { display: "none" };
   const router = useRouter()
-  var state = "calgary"
-  var location = "alberta"
-  const getDeliveryUrl = (e) => {
-    const value = e.target.value
-    const selectedItems = value.split(', ');
-    state = selectedItems[1].toLowerCase()
-    location = selectedItems[0].toLowerCase()
+  const getDeliveryUrl = async (e) => {
+    e.preventDefault();
+    const value = e.target.location.value;
+    const cityInfoItems = await fetchAPI("/canada-cities", {
+      filters: {
+        city_ascii: {
+          $contains: value,
+        }
+      },
+      populate: "*",
+    })
+    const cityInfo = cityInfoItems.data[0]
+    if (cityInfo==undefined) {
+      alert("Please type a city name correctly")
+    }
+    const city = getSlug(cityInfo.attributes.city_ascii)
+    const province_id = cityInfo.attributes.province_id.toLowerCase()
     if (category !== undefined) {
-      router.push(`/ca/${state}/${location}/${category}`);
+      router.push(`/ca/${province_id}/${city}/${category}`);
+    } else {
+      router.push("#");
     }
-    else {
-      router.push('#')
-    }
-  }
+  };
 
   return (
     <header className="header-area header-area-one d-xl-none">
@@ -166,7 +175,7 @@ const MobileMenu = () => {
             className="hero-search-wrapper wow fadeInUp"
             wow-data-delay="70ms"
           >
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={getDeliveryUrl}>
               <div className="row">
               <div className="col-lg-4 col-md-12 col-sm-12 m-3">
                   <div className="d-flex align-content-center justify-content-around align-items-center">
@@ -193,17 +202,13 @@ const MobileMenu = () => {
                       <i style={{ zIndex: 1}}>
                         <RoomIcon />
                       </i>
-                      <select className="form_control" id="location" onChange={getDeliveryUrl}>
-                        <option value="Calgary, Alberta">Calgary, Alberta</option>
-                        <option value="Airdrie, Alberta">Airdrie, Alberta</option>
-                        <option value="Banff, Alberta">Banff, Alberta</option>
-                        <option value="Abbotsford, British Columbia">Abbotsford, British Columbia</option>
-                        <option value="Burnaby, British Columbia">Burnaby, British Columbia</option>
-                        <option value="Surrey, British Columbia">Surrey, British Columbia</option>
-                        <option value="Vancouver, British Columbia">Vancouver, British Columbia</option>
-                        <option value="Winnipeg, Manitoba">Winnipeg, Manitoba</option>
-                        <option value="DartMouth, Nova Scotia">DartMouth, Nova Scotia</option>
-                      </select>
+                      <input
+                        type="text"
+                        className="form_control"
+                        placeholder="City Name"
+                        name="location"
+                        required
+                      />
                     </div>
                   </div>
                 </div>

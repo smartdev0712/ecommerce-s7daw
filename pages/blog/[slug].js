@@ -302,22 +302,27 @@ const BlogDetails = ({ article, categories }) => {
                   <ul className="categories-nav">
                     <li>
                       <a href="#">
-                        Restaurant <span>(10)</span>
+                        Hardwood <span>(10)</span>
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        Museums <span>(12)</span>
+                        Laminate <span>(12)</span>
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        Business <span>(05)</span>
+                        Vinyl <span>(05)</span>
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        Tour &amp; Travel <span>(10)</span>
+                        Tile <span>(10)</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        Carpet <span>(07)</span>
                       </a>
                     </li>
                     <li>

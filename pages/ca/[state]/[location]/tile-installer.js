@@ -5,7 +5,7 @@ import ServiceTemplate from "../../../../components/serviceTemplate";
 const TileInstaller = () => {
   return (
     <Layout category={"tile-installer"}>
-      <ServiceTemplate />
+      <ServiceTemplate category={"Tile Installer"} />
     </Layout>
   );
 };

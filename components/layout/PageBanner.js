@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { toCamelCase } from "../utils";
 
-const PageBanner = ({ pageName, title }) => {
+const PageBanner = ({ category }) => {
   const [state, setState] = useState("");
   const [location, setLocation] = useState("");
   const [service, setService] = useState("");
@@ -39,7 +39,7 @@ const PageBanner = ({ pageName, title }) => {
             <div className="col-lg-12">
               <div className="page-title">
                 <h1 className="MuiTypography-root MuiTypography-h1">
-                  {service} in {location}
+                  {category} in {location}
                 </h1>
               </div>
             </div>
@@ -49,7 +49,7 @@ const PageBanner = ({ pageName, title }) => {
       <h4 className="MuiTypography-body mt-4 mx-4">
         Find the best local {" "}
         <strong style={{ color: "green" }}>
-          {service} in {location}
+          {category} in {location}
         </strong>
       </h4>
     </section>

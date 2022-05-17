@@ -13,28 +13,6 @@ const Footer = () => {
           width = "100%"
           alt="footer"
         />
-        <div className="appStore">
-          <a
-            href="https://apps.apple.com/ca/app/s7daw/id1533319065?itsct=apps_box&itscg=30200"
-            className="MuiIconButtonBase"
-          >
-            <img
-              src="/assets/images/iosStoreBadge.4b4d40d7.svg"
-              alt="play-store"
-              className="storeImage"
-            ></img>
-          </a>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.s7daw.app&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
-            className="MuiIconButtonBase"
-          >
-            <img
-              src="/assets/images/playStoreBadge.6c6cf47a.svg"
-              alt="ios-store"
-              className="storeImage"
-            ></img>
-          </a>
-        </div>
       </div>
       <div className="footer-main">
         <div className="footer-body row">
@@ -46,10 +24,10 @@ const Footer = () => {
             />
             <div className="body-content col-lg-9 col-sm-12 row">
               <p className="body-content-top col-md-12 col-sm-12">
-                “Flooring Metaverse is your source for all flooring. Find stores
+                Flooring Metaverse is your source for all flooring. Find stores
                 & contractors, read product & brand reviews, or learn how to
                 just about any flooring job you can think of! We have it all in
-                one place - the Flooring Metaverse!”
+                one place - the Flooring Metaverse!
               </p>
               {/* <div className="body-content-bottom col-sm-12 row">
                 <p className="col-sm-6" style={{ color: "#9ea137" }}>

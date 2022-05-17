@@ -6,7 +6,7 @@ import ProductTemplate from "../../../../components/productTemplate";
 const HardwoodStore = () => {
   return (
     <Layout category={"hardwood-floor-store"}>
-      <ProductTemplate />
+      <ProductTemplate category={"Hardwood Floor Store"} />
     </Layout>
   );
 };

@@ -6,7 +6,7 @@ import ProductTemplate from "../../../../components/productTemplate";
 const TileStore = () => {
   return (
     <Layout category={"tile-store"}>
-      <ProductTemplate />
+      <ProductTemplate category={"Tile Store"} />
     </Layout>
   );
 };

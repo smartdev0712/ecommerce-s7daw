@@ -26,7 +26,7 @@ const BrandComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-3">
+            {/* <div className="col-lg-3">
               <ul className="list d-flex">
                 <li>
                   <Link href="/products/product/#">
@@ -43,7 +43,7 @@ const BrandComponent = () => {
                   </Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="products-item-wrapper">

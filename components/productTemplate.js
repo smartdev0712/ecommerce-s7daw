@@ -4,7 +4,7 @@ import Title from "./layout/Title";
 import BrandComponent from './Brand/Brand';
 import ProductComponent from './Product/ProductComponent'
 
-const ProductTemplate = () => {
+const ProductTemplate = ({ category }) => {
   const [state, setState] = useState("");
   const [location, setLocation] = useState("");
   useEffect(() => {

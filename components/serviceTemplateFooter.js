@@ -31,11 +31,11 @@ const ServiceTemplateFooter = () => {
   });
   return (
     <section className="hero-area listing-details-wrapper">
-      <h1 className="MuiTypography-root MuiTypography-body mx-5 mb-5">
-        Find local {service} in {location} ready to serve you. <br />
+      <p className="mx-5 mb-2">
+        Find local {service} in {location} ready to serve you.
         Browse the best contractors near you, read reviews and learn more about
         who’s available
-      </h1>
+      </p>
       <div className="listing-faq-box mb-50 wow fadeInUp h5">
         {/* <h4 className="title">Asked Question</h4> */}
         <Accordion className="faq-accordian mx-5" defaultActiveKey="">
@@ -47,7 +47,7 @@ const ServiceTemplateFooter = () => {
               onClick={() => setAccordionActive("collapse")}
               aria-expanded={activeAccordion("collapse")}
             >
-              Why Choose {service} in {location}?
+              <h3>Why Choose {service} in {location}?</h3>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="collapse">
               <div className="card-body">

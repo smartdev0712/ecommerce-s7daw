@@ -6,7 +6,7 @@ import ProductTemplate from "../../../../components/productTemplate";
 const CarpetStore = () => {
   return (
     <Layout category={"carpet-store"}>
-      <ProductTemplate />
+      <ProductTemplate category="Carpet Store"/>
     </Layout>
   );
 };

@@ -938,6 +938,7 @@ ul.ratings.ratings-one li.star:nth-child(1) i,
   margin: 0;
   border-bottom: 1px solid #ececec;
   color: #1b3255;
+  font-size: 14px;
 }
 
 .header-navigation .main-menu ul li .sub-menu li a:hover {
@@ -1165,6 +1166,7 @@ ul.ratings.ratings-one li.star:nth-child(1) i,
   border-radius: 4px;
   text-transform: uppercase;
   text-align: center;
+  border: none
 }
 
 .login-btn {
@@ -3817,7 +3819,7 @@ h3.title {
   border-top: none;
 }
 
-.listing-details-wrapper .listing-faq-box .faq-accordian .card .card-header[aria-expanded]:after {
+.listing-details-wrapper .listing-faq-box .faq-accordian .card .card-header[aria-expanded] h3:after {
   float: right;
   content: "";
   font-family: "themify";
@@ -3825,7 +3827,7 @@ h3.title {
   margin-left: 15px;
 }
 
-.listing-details-wrapper .listing-faq-box .faq-accordian .card .card-header[aria-expanded=true]:after {
+.listing-details-wrapper .listing-faq-box .faq-accordian .card .card-header[aria-expanded=true] h3:after {
   content: "";
 }
 

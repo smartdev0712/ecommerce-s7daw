@@ -5,7 +5,7 @@ import ServiceTemplate from "../../../../components/serviceTemplate";
 const VinylDeckRepair = () => {
   return (
     <Layout category={"vinyl-deck-repair"}>
-      <ServiceTemplate />
+      <ServiceTemplate category={"Vinyl Deck Repair"} />
     </Layout>
   );
 };

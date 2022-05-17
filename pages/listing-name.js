@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React from "react";
+import React, { useState } from "react";
 import PageBanner from "../components/layout/PageBanner";
 import Layout from "../components/layout/Layout";
 import ReCaptcha from "react-google-recaptcha";
@@ -10,6 +10,13 @@ import { fetchAPI } from '../lib/api';
 
 const AddListing = () => {
   const router = useRouter()
+  const [category, setCategory] = useState("")
+
+  const handleCategory = async (e) => {
+    // e.preventDefault();
+    setCategory(e.target.value)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -22,9 +29,29 @@ const AddListing = () => {
     const contact_email = e.target.contact_email.value;
     const image = e.target.Image.files[0];
     const slug = getSlug(name)
+    const city = e.target.city.value;
     const service = document.querySelector(
       'input[name="radio"]:checked'
     ).value;
+    const categoryItems = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    );
+    console.log(categoryItems)
+
+    const categoryRes = []
+    for (let i = 0; i < categoryItems.length; i++) {
+      await fetchAPI("/service-categories", {
+        filters: {
+          name: categoryItems[i].value,
+        }
+      })
+        .then((response) => {
+          categoryRes.push(response.data[0])
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
 
     const serviceRes = await fetchAPI('/services', {
       filters: {
@@ -33,6 +60,16 @@ const AddListing = () => {
       populate: "*",
     });
     
+    const cityRes = await fetchAPI('/canada-cities', {
+      filters: {
+        city_ascii: city
+      }
+    })
+
+    if (cityRes.data[0] == "" || cityRes.data[0] == undefined) {
+      alert("Please select a city correctly")
+    }
+
     let imageID = ""
     const formData = new FormData();
     formData.append("files", image);
@@ -57,6 +94,8 @@ const AddListing = () => {
         "slug": slug,
         "business_logo": imageID,
         "services": [serviceRes.data[0],],
+        "canada_city": cityRes.data[0],
+        "service_categories": categoryRes,
       }
     })
 
@@ -160,7 +199,7 @@ const AddListing = () => {
                     </div>
                     <div className="col-lg-12">
                       <div className="form_group d-flex justify-content-around">
-                        <div className="single-checkbox d-flex">
+                        {/* <div className="single-checkbox d-flex">
                           <input
                             type="radio"
                             id="check1"
@@ -171,39 +210,204 @@ const AddListing = () => {
                           <label htmlFor="check1">
                             <span>Brand</span>
                           </label>
-                        </div>
+                        </div> */}
                         <div className="single-checkbox d-flex">
-                          <input type="radio" id="check2" name="radio" value="Hardwood" />
+                          <input type="radio" id="check2" name="radio" value="Hardwood" onChange={handleCategory} />
                           <label htmlFor="check2">
                             <span>Hardwood</span>
                           </label>
                         </div>
                         <div className="single-checkbox d-flex">
-                          <input type="radio" id="check3" name="radio" value="Laminate" />
+                          <input type="radio" id="check3" name="radio" value="Laminate" onChange={handleCategory} />
                           <label htmlFor="check3">
                             <span>Laminate</span>
                           </label>
                         </div>
                         <div className="single-checkbox d-flex">
-                          <input type="radio" id="check4" name="radio" value="Vinyl" />
+                          <input type="radio" id="check4" name="radio" value="Vinyl" onChange={handleCategory} />
                           <label htmlFor="check4">
                             <span>Vinyl</span>
                           </label>
                         </div>
                         <div className="single-checkbox d-flex">
-                          <input type="radio" id="check5" name="radio" value="Tile" />
+                          <input type="radio" id="check5" name="radio" value="Tile" onChange={handleCategory} />
                           <label htmlFor="check5">
                             <span>Tile</span>
                           </label>
                         </div>
                         <div className="single-checkbox d-flex">
-                          <input type="radio" id="check6" name="radio" value="Carpet" />
+                          <input type="radio" id="check6" name="radio" value="Carpet" onChange={handleCategory} />
                           <label htmlFor="check6">
                             <span>Carpet</span>
                           </label>
                         </div>
                       </div>
                     </div>
+                    {category == "Hardwood" && <div className="col-lg-12">
+                      <p>Service Category</p><hr />
+                      <div className="form_group d-flex justify-content-around">
+                        <div className="single-checkbox d-flex">
+                          <input
+                            type="checkbox"
+                            id="category1"
+                            name="category"
+                            value="Hardwood Floor Refinishing"
+                            // defaultChecked=""
+                          />
+                          <label htmlFor="category1">
+                            <span>Hardwood Floor Refinishing</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category2" name="category" value="Hardwood Floor Installation" />
+                          <label htmlFor="category2">
+                            <span>Hardwood Floor Installation</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category3" name="category" value="Hardwood Floor Repair" />
+                          <label htmlFor="category3">
+                            <span>Hardwood Floor Repair</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category4" name="category" value="Hardwood Floor Cleaning" />
+                          <label htmlFor="category4">
+                            <span>Hardwood Floor Cleaning</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category5" name="category" value="Hardwood Floor Store" />
+                          <label htmlFor="category5">
+                            <span>Hardwood Floor Store</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>}
+                    {category == "Laminate" && <div className="col-lg-12">
+                      <p>Service Category</p><hr />
+                      <div className="form_group d-flex justify-content-around">
+                        <div className="single-checkbox d-flex">
+                          <input
+                            type="checkbox"
+                            id="category1"
+                            name="category"
+                            value="Laminate Flooring Installation"
+                          />
+                          <label htmlFor="category1">
+                            <span>Laminate Flooring Installation</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category2" name="category" value="Laminate Flooring Store" />
+                          <label htmlFor="category2">
+                            <span>Laminate Flooring Store</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category3" name="category" value="Laminate Floor Repair" />
+                          <label htmlFor="category3">
+                            <span>Laminate Floor Repair</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>}
+                    {category == "Vinyl" && <div className="col-lg-12">
+                      <p>Service Category</p><hr />
+                      <div className="form_group d-flex justify-content-around">
+                        <div className="single-checkbox d-flex">
+                          <input
+                            type="checkbox"
+                            id="category1"
+                            name="category"
+                            value="Vinyl Flooring Store"
+                          />
+                          <label htmlFor="category1">
+                            <span>Vinyl Flooring Store</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category2" name="category" value="Vinyl Flooring Installation" />
+                          <label htmlFor="category2">
+                            <span>Vinyl Floor Installation</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category3" name="category" value="Vinyl Flooring Repair" />
+                          <label htmlFor="category3">
+                            <span>Vinyl Floor Repair</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category4" name="category" value="Vinyl Deck Repair" />
+                          <label htmlFor="category4">
+                            <span>Vinyl Deck Repair</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category5" name="category" value="Vinyl Decking Installation" />
+                          <label htmlFor="category5">
+                            <span>Vinyl Decking Installation</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>}
+                    {category == "Tile" && <div className="col-lg-12">
+                      <p>Service Category</p><hr />
+                      <div className="form_group d-flex justify-content-around">
+                        <div className="single-checkbox d-flex">
+                          <input
+                            type="checkbox"
+                            id="category1"
+                            name="category"
+                            value="Tile Store"
+                          />
+                          <label htmlFor="category1">
+                            <span>Tile Store</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category2" name="category" value="Vinyl Flooring Installation" />
+                          <label htmlFor="category2">
+                            <span>Tile Installer</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>}
+                    {category == "Carpet" && <div className="col-lg-12">
+                      <p>Service Category</p><hr />
+                      <div className="form_group d-flex justify-content-around">
+                        <div className="single-checkbox d-flex">
+                          <input
+                            type="checkbox"
+                            id="category1"
+                            name="category"
+                            value="Carpet Cleaning"
+                          />
+                          <label htmlFor="category1">
+                            <span>Carpet Cleaning</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category2" name="category" value="Carpet Installer" />
+                          <label htmlFor="category2">
+                            <span>Carpet Installer</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category3" name="category" value="Carpet Repair" />
+                          <label htmlFor="category3">
+                            <span>Carpet Repair</span>
+                          </label>
+                        </div>
+                        <div className="single-checkbox d-flex">
+                          <input type="checkbox" id="category5" name="category" value="Carpet Store" />
+                          <label htmlFor="category5">
+                            <span>Carpet Store</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>}
                     <div className="col-lg-6">
                       <div className="form_group">
                         <input
@@ -217,15 +421,13 @@ const AddListing = () => {
                     </div>
                     <div className="col-lg-6">
                       <div className="form_group">
-                        <select className="wide form_control">
-                          <option selected disabled value={"Services"}>
-                            Services
-                          </option>
-                          <option value={1}>Hardwood</option>
-                          <option value={2}>Laminate</option>
-                          <option value={3}>Vinyl</option>
-                          <option value={4}>Tile</option>
-                        </select>
+                        <input
+                          type="text"
+                          className="form_control"
+                          placeholder="City *"
+                          name="city"
+                          required
+                        />
                       </div>
                     </div>
                   </div>

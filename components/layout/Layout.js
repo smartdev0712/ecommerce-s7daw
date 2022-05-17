@@ -15,7 +15,7 @@ const Layout = ({ children, category }) => {
   return (
     <Fragment>
       <ImageView />
-      <MobileMenu />
+      <MobileMenu category={category} />
       <Header category={category} />
       {children} <Footer />
     </Fragment>

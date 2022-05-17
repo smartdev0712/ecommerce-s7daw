@@ -43,6 +43,7 @@ const ListingMap = () => {
                         <option value={2}>Laminate</option>
                         <option value={3}>Vinyl</option>
                         <option value={4}>Tile</option>
+                        <option value={5}>Carpet</option>
                       </select>
                     </div>
                   </div>
@@ -171,6 +172,7 @@ const ListingMap = () => {
                               <option value={2}>Laminate</option>
                               <option value={3}>Vinyl</option>
                               <option value={4}>Tile</option>
+                              <option value={5}>Carpet</option>
                             </select>
                           </div>
                         </div>

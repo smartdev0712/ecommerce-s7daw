@@ -164,12 +164,12 @@ const AddBlog = () => {
               <div className="m-3 form-check">
                 <input
                   type="checkbox"
-                  id="check1"
+                  id="term_service"
                   name="checkbox"
                   className="form-check-input"
                   defaultChecked=""
                 />
-                <label className="form-check-label" htmlFor="check1">
+                <label className="form-check-label" htmlFor="term_service">
                   <span>I accept Terms of Service of this website</span>
                 </label>
               </div>

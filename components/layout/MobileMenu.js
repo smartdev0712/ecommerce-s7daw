@@ -5,6 +5,9 @@ import { Home, Hardwood, Laminate, Vinyl, Tile, Carpet, Brands, Blog } from "./M
 import RoomIcon from "@mui/icons-material/Room";
 import SearchIcon from "@mui/icons-material/Search";
 
+import { fetchAPI } from "../../lib/api";
+import { getSlug } from "../utils";
+
 const MobileMenu = ({ category }) => {
   const [toggle, setToggle] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
@@ -180,7 +183,7 @@ const MobileMenu = ({ category }) => {
               <div className="col-lg-4 col-md-12 col-sm-12 m-3">
                   <div className="d-flex align-content-center justify-content-around align-items-center">
                     <strong className="mx-4">Search For: </strong>
-                    <div className="form_group" style={{ width: "70%" }}>
+                    <div className="form_group">
                       <i className="col-sm-0">
                         <SearchIcon />
                       </i>
@@ -189,7 +192,7 @@ const MobileMenu = ({ category }) => {
                         className="form_control"
                         placeholder="stores, brands or products"
                         name="search"
-                        required
+                        // required
                       />
                     </div>
                   </div>
@@ -197,8 +200,8 @@ const MobileMenu = ({ category }) => {
                 {/* <div className="col-lg-1 col-md-0 col-sm-0"></div> */}
                 <div className="col-lg-5 col-md-12 col-sm-12 m-3">
                   <div className="d-flex justify-content-around align-content-center align-items-center">
-                    <strong className="mx-4">Browsing Stores For: </strong>
-                    <div className="form_group justify-content-center align-items-center" style={{ width: "60%" }}>
+                    <strong className="mx-4">Browsing Services For: </strong>
+                    <div className="form_group justify-content-center align-items-center">
                       <i style={{ zIndex: 1}}>
                         <RoomIcon />
                       </i>
@@ -210,13 +213,14 @@ const MobileMenu = ({ category }) => {
                         required
                       />
                     </div>
+                    <input type="submit" value="Search" className = "btn-root register-btn mx-1" />
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-12 col-sm-12 mt-4">
                   <div className="d-flex justify-content-around align-content-center align-items-center">
                     <Link href="/listing-name">
                       <a className="btn-root login-btn">
-                        + ADD LIST
+                        + ADD LISTING
                       </a>
                     </Link>
                   </div>

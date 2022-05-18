@@ -101,7 +101,11 @@ export const activeNavMenu = (path) => {
   navItem.forEach((nav) => {
     if (nav.pathname === window.location.pathname) {
       if (!nav.href.includes("#")) {
-        if (nav.pathname === "/" || nav.pathname === "/blog/blog-category" || nav.pathname === "/brand") {
+        if (
+          nav.pathname === "/" ||
+          nav.pathname === "/blog/blog-category" ||
+          nav.pathname === "/brand"
+        ) {
           nav.className = "active";
         } else {
           let navContainer = nav.parentElement.parentElement.parentElement;
@@ -113,12 +117,53 @@ export const activeNavMenu = (path) => {
 };
 
 export const toCamelCase = (str) => {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-    return index === 0 ? word.toUpperCase() : word.toLowerCase();
-  }).replace(/\s+/g, '');
-}
+  return str
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+      return index === 0 ? word.toUpperCase() : word.toLowerCase();
+    })
+    .replace(/\s+/g, "");
+};
 
 export const getSlug = (str) => {
   const newStr = str.toLowerCase();
-  return newStr.replaceAll(" ", "-")
-}
+  return newStr.replaceAll(" ", "-");
+};
+
+export const getLocation = () => {
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  const error = (err) => {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  navigator.geolocation.getCurrentPosition(showPosition, error, options);
+};
+
+const showPosition = (position) => {
+  const lat = position.coords.latitude;
+  const lng = position.coords.longitude;
+  var xhr = new XMLHttpRequest();
+  xhr.open(
+    "GET",
+    "https://us1.locationiq.com/v1/reverse.php?key=pk.208fe6b58f412dc962ed45ca46ee8a61&lat=" +
+      lat +
+      "&lon=" +
+      lng +
+      "&format=json",
+    true
+  );
+  xhr.send();
+  xhr.onreadystatechange = processRequest;
+  xhr.addEventListener("readystatechange", processRequest, false);
+  const processRequest = () => {
+    console.log('aaa')
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = JSON.parse(xhr.responseText);
+        var city = response.address.city;
+        console.log(city);
+        return;
+    }
+  }
+};

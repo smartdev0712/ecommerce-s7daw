@@ -3,7 +3,7 @@ import ImageView from "../ImageView";
 import Footer from "./Footer";
 import Header from "./Header";
 import MobileMenu from "./MobileMenu";
-import { activeNavMenu, animation, niceSelect, stickyNav } from "../utils";
+import { activeNavMenu, animation, niceSelect, stickyNav, getLocation } from "../utils";
 
 const Layout = ({ children, category }) => {
   useEffect(() => {
@@ -11,6 +11,7 @@ const Layout = ({ children, category }) => {
     // niceSelect();
     activeNavMenu();
     window.addEventListener("scroll", stickyNav);
+    getLocation()
   }, []);
   return (
     <Fragment>

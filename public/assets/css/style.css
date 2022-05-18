@@ -90,7 +90,7 @@ h6 {
   color: #0d0d0d;
   margin: 0px;
   font-family: "Quicksand", sans-serif;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 h1 {
@@ -2963,7 +2963,7 @@ ul.ratings li {
   -webkit-box-shadow: 3.09px 9.511px 28.2px 1.8px rgba(30, 33, 62, 0.1);
   box-shadow: 3.09px 9.511px 28.2px 1.8px rgba(30, 33, 62, 0.1);
   margin-right: 15px;
-  border-radius: 50%;
+  border-radius: 5%;
   border: 1px solid #a4a4a4;
 }
 
@@ -4292,7 +4292,7 @@ h3.title {
 
 .add-listing-form.timing-listing-form .timeing-list input.time {
   float: right;
-  width: 50%;
+  /* width: 50%; */
   margin-bottom: 0;
   border: 1px solid #e0e0e0;
 }

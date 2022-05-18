@@ -15,9 +15,9 @@ const Blog = ({ articles, categories }) => {
   }, [active]);
   return (
     <>
-      <Link href="/blog/add-blog">
+      {/* <Link href="/blog/add-blog">
         <a className="btn-root blog-btn wow fadeInUp">+ Add Your Blog</a>
-      </Link>
+      </Link> */}
       <section className="blog-area pt-120 pb-70">
         <div className="container">
           <div className="row">

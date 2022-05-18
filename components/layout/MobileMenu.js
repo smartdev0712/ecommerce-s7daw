@@ -1,7 +1,16 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { Home, Hardwood, Laminate, Vinyl, Tile, Carpet, Brands, Blog } from "./Menu";
+import {
+  Home,
+  Hardwood,
+  Laminate,
+  Vinyl,
+  Tile,
+  Carpet,
+  Brands,
+  Blog,
+} from "./Menu";
 import RoomIcon from "@mui/icons-material/Room";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -15,7 +24,7 @@ const MobileMenu = ({ category }) => {
       setActiveMenu(activeMenu === value ? "" : value),
     activeLi = (value) =>
       value === activeMenu ? { display: "block" } : { display: "none" };
-  const router = useRouter()
+  const router = useRouter();
   const getDeliveryUrl = async (e) => {
     e.preventDefault();
     const value = e.target.location.value;
@@ -23,16 +32,16 @@ const MobileMenu = ({ category }) => {
       filters: {
         city_ascii: {
           $contains: value,
-        }
+        },
       },
       populate: "*",
-    })
-    const cityInfo = cityInfoItems.data[0]
-    if (cityInfo==undefined) {
-      alert("Please type a city name correctly")
+    });
+    const cityInfo = cityInfoItems.data[0];
+    if (cityInfo == undefined) {
+      alert("Please type a city name correctly");
     }
-    const city = getSlug(cityInfo.attributes.city_ascii)
-    const province_id = cityInfo.attributes.province_id.toLowerCase()
+    const city = getSlug(cityInfo.attributes.city_ascii);
+    const province_id = cityInfo.attributes.province_id.toLowerCase();
     if (category !== undefined) {
       router.push(`/ca/${province_id}/${city}/${category}`);
     } else {
@@ -180,29 +189,14 @@ const MobileMenu = ({ category }) => {
           >
             <form onSubmit={getDeliveryUrl}>
               <div className="row">
-              <div className="col-lg-4 col-md-12 col-sm-12 m-3">
-                  <div className="d-flex align-content-center justify-content-around align-items-center">
-                    <strong className="mx-4">Search For: </strong>
-                    <div className="form_group">
-                      <i className="col-sm-0">
-                        <SearchIcon />
-                      </i>
-                      <input
-                        type="search"
-                        className="form_control"
-                        placeholder="stores, brands or products"
-                        name="search"
-                        // required
-                      />
-                    </div>
-                  </div>
-                </div>
-                {/* <div className="col-lg-1 col-md-0 col-sm-0"></div> */}
-                <div className="col-lg-5 col-md-12 col-sm-12 m-3">
+                <div className="col-lg-9 col-md-12 col-sm-12 m-3">
                   <div className="d-flex justify-content-around align-content-center align-items-center">
                     <strong className="mx-4">Browsing Services For: </strong>
-                    <div className="form_group justify-content-center align-items-center">
-                      <i style={{ zIndex: 1}}>
+                    <div
+                      className="form_group justify-content-center align-items-center"
+                      style={{ width: "50%" }}
+                    >
+                      <i style={{ zIndex: 1 }}>
                         <RoomIcon />
                       </i>
                       <input
@@ -213,15 +207,17 @@ const MobileMenu = ({ category }) => {
                         required
                       />
                     </div>
-                    <input type="submit" value="Search" className = "btn-root register-btn mx-1" />
+                    <input
+                      type="submit"
+                      value="Search"
+                      className="btn-root register-btn mx-1"
+                    />
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-12 col-sm-12 mt-4">
                   <div className="d-flex justify-content-around align-content-center align-items-center">
                     <Link href="/listing-name">
-                      <a className="btn-root login-btn">
-                        + ADD LISTING
-                      </a>
+                      <a className="btn-root login-btn">+ ADD LISTING</a>
                     </Link>
                   </div>
                 </div>

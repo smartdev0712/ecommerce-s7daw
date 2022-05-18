@@ -465,11 +465,11 @@ const AddListing = () => {
                     </div>
                   </div>
                 </div>
-                <div className="add-listing-form map-form mb-60 wow fadeInUp">
+                {/* <div className="add-listing-form map-form mb-60 wow fadeInUp">
                   <div className="map-box">
                     <iframe src="https://maps.google.com/maps?q=new%20york&t=&z=13&ie=UTF8&iwloc=&output=embed" />
                   </div>
-                </div>
+                </div> */}
                 <div className="add-listing-form timing-listing-form mb-60 wow fadeInUp">
                   <h4 className="title">Opening Hours</h4>
                   <div className="row">

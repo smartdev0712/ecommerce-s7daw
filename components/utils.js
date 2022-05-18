@@ -139,31 +139,30 @@ export const getLocation = () => {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
   navigator.geolocation.getCurrentPosition(showPosition, error, options);
-};
-
-const showPosition = (position) => {
-  const lat = position.coords.latitude;
-  const lng = position.coords.longitude;
-  var xhr = new XMLHttpRequest();
-  xhr.open(
-    "GET",
-    "https://us1.locationiq.com/v1/reverse.php?key=pk.208fe6b58f412dc962ed45ca46ee8a61&lat=" +
-      lat +
-      "&lon=" +
-      lng +
-      "&format=json",
-    true
-  );
-  xhr.send();
-  xhr.onreadystatechange = processRequest;
-  xhr.addEventListener("readystatechange", processRequest, false);
-  const processRequest = () => {
-    console.log('aaa')
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        var response = JSON.parse(xhr.responseText);
-        var city = response.address.city;
-        console.log(city);
-        return;
+  
+  function showPosition(position) {
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+    var xhr = new XMLHttpRequest();
+    xhr.open(
+      "GET",
+      "https://us1.locationiq.com/v1/reverse.php?key=pk.208fe6b58f412dc962ed45ca46ee8a61&lat=" +
+        lat +
+        "&lon=" +
+        lng +
+        "&format=json",
+      true
+    );
+    xhr.send();
+    xhr.onreadystatechange = processRequest;
+    xhr.addEventListener("readystatechange", processRequest, false);
+    function processRequest(e) {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText);
+          var city = response.address.city;
+          console.log(city);
+          return;
+      }
     }
-  }
+  };
 };

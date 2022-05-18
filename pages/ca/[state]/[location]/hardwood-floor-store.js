@@ -1,12 +1,12 @@
 import Link from "next/link";
 import React from "react";
 import Layout from "../../../../components/layout/Layout";
-import ProductTemplate from "../../../../components/productTemplate";
+import ServiceTemplate from "../../../../components/serviceTemplate";
 
 const HardwoodStore = () => {
   return (
     <Layout category={"hardwood-floor-store"}>
-      <ProductTemplate category={"Hardwood Floor Store"} />
+      <ServiceTemplate category={"Hardwood Floor Store"} />
     </Layout>
   );
 };

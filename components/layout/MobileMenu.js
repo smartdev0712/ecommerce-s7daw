@@ -17,7 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { fetchAPI } from "../../lib/api";
 import { getSlug } from "../utils";
 
-const MobileMenu = ({ category }) => {
+const MobileMenu = ({ category, cityInfo }) => {
   const [toggle, setToggle] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
   const activeMenuSet = (value) =>
@@ -83,7 +83,7 @@ const MobileMenu = ({ category }) => {
                           <a>Hardwood</a>
                         </Link>
                         <ul className="sub-menu" style={activeLi("Hardwood")}>
-                          <Hardwood />
+                          <Hardwood cityInfo={cityInfo} />
                         </ul>
                         <span
                           className="dd-trigger"
@@ -97,7 +97,7 @@ const MobileMenu = ({ category }) => {
                           <a>Laminate</a>
                         </Link>
                         <ul className="sub-menu" style={activeLi("Laminate")}>
-                          <Laminate />
+                          <Laminate cityInfo={cityInfo} />
                         </ul>
                         <span
                           className="dd-trigger"
@@ -111,7 +111,7 @@ const MobileMenu = ({ category }) => {
                           <a>Vinyl</a>
                         </Link>
                         <ul className="sub-menu" style={activeLi("Vinyl")}>
-                          <Vinyl />
+                          <Vinyl cityInfo={cityInfo} />
                         </ul>
                         <span
                           className="dd-trigger"
@@ -125,7 +125,7 @@ const MobileMenu = ({ category }) => {
                           <a>Tile</a>
                         </Link>
                         <ul className="sub-menu" style={activeLi("Tile")}>
-                          <Tile />
+                          <Tile cityInfo={cityInfo} />
                         </ul>
                         <span
                           className="dd-trigger"
@@ -139,7 +139,7 @@ const MobileMenu = ({ category }) => {
                           <a>Carpet</a>
                         </Link>
                         <ul className="sub-menu" style={activeLi("Carpet")}>
-                          <Carpet />
+                          <Carpet cityInfo={cityInfo} />
                         </ul>
                         <span
                           className="dd-trigger"
@@ -148,7 +148,7 @@ const MobileMenu = ({ category }) => {
                           <i className="ti-arrow-down"></i>
                         </span>
                       </li>
-                      <Brands />
+                      <Brands cityInfo={cityInfo} />
                       <Blog />
                     </ul>
                   </nav>

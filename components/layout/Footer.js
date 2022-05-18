@@ -4,7 +4,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-const Footer = () => {
+const Footer = ({ cityInfo }) => {
   return (
     <footer className="footer-area">
       <div className="footer-image">
@@ -53,16 +53,16 @@ const Footer = () => {
               <Link href="/">
                 <a className="footer-menu-item">HOME</a>
               </Link>
-              <Link href="/ca/alberta/calgary/hardwood-floor-store">
+              <Link href={`/ca/${cityInfo.province_id}/${cityInfo.city}/hardwood-floor-store`}>
                 <a className="footer-menu-item">HARDWOOD</a>
               </Link>
-              <Link href="/ca/alberta/calgary/laminate-flooring-store">
+              <Link href={`/ca/${cityInfo.province_id}/${cityInfo.city}/laminate-flooring-store`}>
                 <a className="footer-menu-item">LAMINATE</a>
               </Link>
-              <Link href="/ca/alberta/calgary/vinyl-floor-store">
+              <Link href={`/ca/${cityInfo.province_id}/${cityInfo.city}/vinyl-floor-store`}>
                 <a className="footer-menu-item">VINYL</a>
               </Link>
-              <Link href="/ca/alberta/calgary/tile-store">
+              <Link href={`/ca/${cityInfo.province_id}/${cityInfo.city}/tile-store`}>
                 <a className="footer-menu-item">TILE</a>
               </Link>
               <Link href="/brand">

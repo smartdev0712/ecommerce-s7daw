@@ -17,7 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { fetchAPI } from "../../lib/api";
 import { getSlug } from "../utils";
 
-const Header = ({ category }) => {
+const Header = ({ category, cityInfo }) => {
   const router = useRouter();
   const getDeliveryUrl = async (e) => {
     e.preventDefault();
@@ -76,7 +76,7 @@ const Header = ({ category }) => {
                           <a>Hardwood</a>
                         </Link>
                         <ul className="sub-menu">
-                          <Hardwood />
+                          <Hardwood cityInfo={cityInfo} />
                         </ul>
                       </li>
                       <li className="menu-item has-children">
@@ -84,7 +84,7 @@ const Header = ({ category }) => {
                           <a>Laminate</a>
                         </Link>
                         <ul className="sub-menu">
-                          <Laminate />
+                          <Laminate cityInfo={cityInfo} />
                         </ul>
                       </li>
                       <li className="menu-item has-children">
@@ -92,7 +92,7 @@ const Header = ({ category }) => {
                           <a>Vinyl</a>
                         </Link>
                         <ul className="sub-menu">
-                          <Vinyl />
+                          <Vinyl cityInfo={cityInfo} />
                         </ul>
                       </li>
                       <li className="menu-item has-children">
@@ -100,7 +100,7 @@ const Header = ({ category }) => {
                           <a>Tile</a>
                         </Link>
                         <ul className="sub-menu">
-                          <Tile />
+                          <Tile cityInfo={cityInfo} />
                         </ul>
                       </li>
                       <li className="menu-item has-children">
@@ -108,10 +108,10 @@ const Header = ({ category }) => {
                           <a>Carpet</a>
                         </Link>
                         <ul className="sub-menu">
-                          <Carpet />
+                          <Carpet cityInfo={cityInfo} />
                         </ul>
                       </li>
-                      <Brands />
+                      <Brands cityInfo={cityInfo} />
                       <Blog />
                     </ul>
                   </nav>

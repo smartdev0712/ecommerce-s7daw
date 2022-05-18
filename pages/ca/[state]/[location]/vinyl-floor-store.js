@@ -1,12 +1,12 @@
 import Link from "next/link";
 import React from "react";
 import Layout from "../../../../components/layout/Layout";
-import ProductTemplate from "../../../../components/productTemplate";
+import ServiceTemplate from "../../../../components/serviceTemplate";
 
 const VinylStore = () => {
   return (
     <Layout category={"vinyl-floor-store"}>
-      <ProductTemplate category={"Vinyl Floor Store"}/>
+      <ServiceTemplate category={"Vinyl Floor Store"}/>
     </Layout>
   );
 };

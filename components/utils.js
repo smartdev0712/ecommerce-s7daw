@@ -117,11 +117,16 @@ export const activeNavMenu = (path) => {
 };
 
 export const toCamelCase = (str) => {
-  return str
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-      return index === 0 ? word.toUpperCase() : word.toLowerCase();
-    })
-    .replace(/\s+/g, "");
+  const strItems = str.split("-");
+  var result = ""
+  for (let i = 0; i < strItems.length; i++) {
+    result += strItems[i]
+      .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toUpperCase() : word.toLowerCase();
+      })
+      .replace(/\s+/g, "") + " ";
+  }
+  return result;
 };
 
 export const getSlug = (str) => {
@@ -133,13 +138,13 @@ export const getLocation = () => {
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0
+    maximumAge: 0,
   };
   const error = (err) => {
     console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
+  };
   navigator.geolocation.getCurrentPosition(showPosition, error, options);
-  
+
   function showPosition(position) {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
@@ -158,11 +163,11 @@ export const getLocation = () => {
     xhr.addEventListener("readystatechange", processRequest, false);
     function processRequest(e) {
       if (xhr.readyState == 4 && xhr.status == 200) {
-          var response = JSON.parse(xhr.responseText);
-          var city = response.address.city;
-          console.log(city);
-          return;
+        var response = JSON.parse(xhr.responseText);
+        var city = response.address.city;
+        console.log(city);
+        return;
       }
     }
-  };
+  }
 };

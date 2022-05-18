@@ -15,13 +15,14 @@ import {
 import RoomIcon from "@mui/icons-material/Room";
 import SearchIcon from "@mui/icons-material/Search";
 import { fetchAPI } from "../../lib/api";
-import { getSlug } from "../utils";
+import { getSlug, toCamelCase } from "../utils";
 
 const Header = ({ category, cityInfo }) => {
   const router = useRouter();
   const getDeliveryUrl = async (e) => {
     e.preventDefault();
-    const value = e.target.location.value;
+    const value = toCamelCase(e.target.location.value).trim();
+    console.log(value)
     const cityInfoItems = await fetchAPI("/canada-cities", {
       filters: {
         city_ascii: {
@@ -31,16 +32,17 @@ const Header = ({ category, cityInfo }) => {
       populate: "*",
     });
     const cityInfo = cityInfoItems.data[0];
+    console.log(cityInfo);
     if (cityInfo == undefined) {
       alert("Please type a city name correctly");
-    }
-    console.log(cityInfo);
-    const city = getSlug(cityInfo.attributes.city_ascii);
-    const province_id = cityInfo.attributes.province_id.toLowerCase();
-    if (category !== undefined) {
-      router.push(`/ca/${province_id}/${city}/${category}`);
     } else {
-      router.push("#");
+      const city = getSlug(cityInfo.attributes.city_ascii);
+      const province_id = cityInfo.attributes.province_id.toLowerCase();
+      if (category !== undefined) {
+        router.push(`/ca/${province_id}/${city}/${category}`);
+      } else {
+        router.push("#");
+      }
     }
   };
 

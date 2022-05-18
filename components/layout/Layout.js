@@ -41,6 +41,7 @@ const Layout = ({ children, category }) => {
       async function processRequest(e) {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var response = JSON.parse(xhr.responseText);
+            console.log(response.address)
             const cityInfoItems = await fetchAPI("/canada-cities", {
               filters: {
                 city_ascii: response.address.city,

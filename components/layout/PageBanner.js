@@ -9,13 +9,7 @@ const PageBanner = ({ category }) => {
   useEffect(() => {
     const url = document.location.toString().split("/");
     let state = url[url.length - 3];
-    if (state.includes("%")) {
-      let stateItems = state.split("%20");
-      state = toCamelCase(stateItems[0]) + " " + toCamelCase(stateItems[1]);
-      setState(state);
-    } else {
-      setState(toCamelCase(state));
-    }
+    setState(state.toUpperCase())
     setLocation(toCamelCase(url[url.length - 2]));
     const service = url[url.length - 1];
     let serviceItems = service.split("-");
@@ -49,7 +43,7 @@ const PageBanner = ({ category }) => {
       <h4 className="MuiTypography-body mt-4 mx-4">
         Find the best local {" "}
         <strong style={{ color: "green" }}>
-          {category} in {location}
+          {category} in {location}, {state}
         </strong>
       </h4>
     </section>

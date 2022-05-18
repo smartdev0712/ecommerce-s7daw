@@ -126,7 +126,7 @@ export const toCamelCase = (str) => {
       })
       .replace(/\s+/g, "") + " ";
   }
-  return result;
+  return result.slice(0, -1);
 };
 
 export const getSlug = (str) => {

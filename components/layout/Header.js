@@ -21,7 +21,7 @@ const Header = ({ category, cityInfo }) => {
   const router = useRouter();
   const getDeliveryUrl = async (e) => {
     e.preventDefault();
-    const value = toCamelCase(e.target.location.value).trim();
+    const value = toCamelCase(e.target.location.value);
     console.log(value)
     const cityInfoItems = await fetchAPI("/canada-cities", {
       filters: {

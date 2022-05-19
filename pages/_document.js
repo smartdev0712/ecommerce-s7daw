@@ -26,6 +26,14 @@ class MyDocument extends Document {
             async
             src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js"
           />
+          <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpK2K9D5QfMMiTVdsgz9cSjoKcXmhRsOo&libraries=places&v=weekly"
+            defer
+          />
+          <script 
+            async
+            src="https://polyfill.io/v3/polyfill.min.js?features=default" 
+          />
         </Head>
         <body>
           <Main />

@@ -1,16 +1,20 @@
 import { useRouter } from 'next/router'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageBanner from "../components/layout/PageBanner";
 import Layout from "../components/layout/Layout";
 import ReCaptcha from "react-google-recaptcha";
 
-import { getSlug } from "../components/utils";
+import { getSlug, autoFill } from "../components/utils";
 import http from "../components/http";
 import { fetchAPI } from '../lib/api';
 
 const AddListing = () => {
   const router = useRouter()
   const [category, setCategory] = useState([])
+
+  useEffect(() => {
+    autoFill();
+  },[])
 
   const handleCategory = async (e) => {
     // e.preventDefault();
@@ -182,7 +186,8 @@ const AddListing = () => {
                     <div className="col-lg-6">
                       <div className="form_group">
                         <input
-                          type="text"
+                          // type="text"
+                          id="address"
                           className="form_control"
                           placeholder="Address *"
                           name="address"

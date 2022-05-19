@@ -8,10 +8,11 @@ import { getStrapiMedia } from "../../lib/media";
 
 const BrandComponent = ({ category }) => {
   const [businesses, setBusiness] = useState("");
-  const url = document.location.toString().split("/");
-  const state = url[url.length - 3].toUpperCase();
-  const city = toCamelCase(url[url.length - 2]);
+  const [cityName, setCity] = useState("");
   useEffect(() => {
+    const url = document.location.toString().split("/");
+    const state = url[url.length - 3].toUpperCase();
+    const city = toCamelCase(url[url.length - 2]);
     (async () => {
       const businesses = await fetchAPI("/businesses", {
         filters: {
@@ -25,8 +26,9 @@ const BrandComponent = ({ category }) => {
         populate: "*",
       });
       setBusiness(businesses.data);
+      setCity(city)
     })();
-  },[city]);
+  });
   return (
     <section className="products-area pt-50 pb-100">
       <div className="container">
@@ -161,7 +163,7 @@ const BrandComponent = ({ category }) => {
               })}
               {businesses.length == 0 && 
                 <div>
-                  <p style={{fontSize:"20px"}}>We apologize, we haven’t added any {category} businesses for your area quite yet. Please let your local business owners in {city} know to add themselves for FREE.</p>
+                  <p style={{fontSize:"20px"}}>We apologize, we haven’t added any {category} businesses for your area quite yet. Please let your local business owners in {cityName} know to add themselves for FREE.</p>
                 </div>
               }
             {/* <div className="col-lg-4 col-md-6 col-sm-12">

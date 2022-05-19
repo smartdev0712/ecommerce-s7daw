@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
-import React, { useState, useEffect } from "react";
-import PageBanner from "../components/layout/PageBanner";
+import React, { useState } from "react";
 import Layout from "../components/layout/Layout";
 import ReCaptcha from "react-google-recaptcha";
+import Autocomplete from "react-google-autocomplete"
 
-import { getSlug, autoFill } from "../components/utils";
+import { getSlug } from "../components/utils";
 import http from "../components/http";
 import { fetchAPI } from '../lib/api';
 
@@ -12,12 +12,7 @@ const AddListing = () => {
   const router = useRouter()
   const [category, setCategory] = useState([])
 
-  useEffect(() => {
-    autoFill();
-  })
-
   const handleCategory = async (e) => {
-    // e.preventDefault();
     if (e.target.checked) {
       setCategory([...category, e.target.value])
     }
@@ -185,13 +180,13 @@ const AddListing = () => {
                     </div>
                     <div className="col-lg-6">
                       <div className="form_group">
-                        <input
-                          // type="text"
-                          id="address"
+                        <Autocomplete
                           className="form_control"
                           placeholder="Address *"
-                          name="address"
-                          required
+                          apiKey={process.env.GOOGLE_API_KEY}
+                          onPlaceSelected={(place) => {
+                            console.log(place);
+                          }}
                         />
                       </div>
                     </div>

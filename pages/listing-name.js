@@ -14,7 +14,7 @@ const AddListing = () => {
 
   useEffect(() => {
     autoFill();
-  },[])
+  })
 
   const handleCategory = async (e) => {
     // e.preventDefault();

@@ -232,32 +232,6 @@ const HomeComponent = () => {
                           />
                         </a>
                       </Link>
-                      {/* <a href="#" className="cat-btn">
-                        <i className="flaticon-chef" />
-                      </a>
-                      <span className="featured-btn">Featured</span>
-                      <ul className="ratings ratings-five">
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li>
-                          <span>
-                            <a href="#">(01 Reviews)</a>
-                          </span>
-                        </li>
-                      </ul> */}
                     </div>
                     <div className="listing-content">
                       <h3 className="title">
@@ -272,7 +246,6 @@ const HomeComponent = () => {
                             {brand.attributes.phone_number}
                           </a>
                         )}
-                        {/* <span className="status st-open">Open</span> */}
                       </span>
                       <div className="listing-meta">
                         <ul>
@@ -283,12 +256,6 @@ const HomeComponent = () => {
                               , CANADA
                             </span>
                           </li>
-                          {/* <li>
-                            <span>
-                              <i className="ti-heart" />
-                              <a href="#">Save</a>
-                            </span>
-                          </li> */}
                         </ul>
                       </div>
                     </div>
@@ -333,32 +300,6 @@ const HomeComponent = () => {
                           />
                         </a>
                       </Link>
-                      {/* <a href="#" className="cat-btn">
-                        <i className="flaticon-chef" />
-                      </a>
-                      <span className="featured-btn">Featured</span>
-                      <ul className="ratings ratings-five">
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li>
-                          <span>
-                            <a href="#">(01 Reviews)</a>
-                          </span>
-                        </li>
-                      </ul> */}
                     </div>
                     <div className="listing-content">
                       <h3 className="title">
@@ -373,7 +314,6 @@ const HomeComponent = () => {
                             {brand.attributes.phone_number}
                           </a>
                         )}
-                        {/* <span className="status st-open">Open</span> */}
                       </span>
                       <div className="listing-meta">
                         <ul>
@@ -384,12 +324,6 @@ const HomeComponent = () => {
                               , CANADA
                             </span>
                           </li>
-                          {/* <li>
-                            <span>
-                              <i className="ti-heart" />
-                              <a href="#">Save</a>
-                            </span>
-                          </li> */}
                         </ul>
                       </div>
                     </div>

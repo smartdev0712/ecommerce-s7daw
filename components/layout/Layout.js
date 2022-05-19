@@ -3,7 +3,7 @@ import ImageView from "../ImageView";
 import Footer from "./Footer";
 import Header from "./Header";
 import MobileMenu from "./MobileMenu";
-import { activeNavMenu, animation, getSlug, niceSelect, stickyNav } from "../utils";
+import { activeNavMenu, animation, getSlug, niceSelect, stickyNav, autoFill } from "../utils";
 import { fetchAPI } from "../../lib/api";
 
 const Layout = ({ children, category }) => {
@@ -72,6 +72,7 @@ const Layout = ({ children, category }) => {
     activeNavMenu();
     window.addEventListener("scroll", stickyNav);
     getLocation();
+    // autoFill();
   }, []);
   return (
     <Fragment>

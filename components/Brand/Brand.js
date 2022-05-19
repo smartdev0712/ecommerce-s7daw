@@ -92,7 +92,7 @@ const BrandComponent = ({ category }) => {
                             />
                           </a>
                         </Link>
-                        <a href="#" className="cat-btn">
+                        {/* <a href="#" className="cat-btn">
                           <i className="flaticon-chef" />
                         </a>
                         <ul className="ratings ratings-four">
@@ -116,7 +116,7 @@ const BrandComponent = ({ category }) => {
                               <a href="#">(02 Reviews)</a>
                             </span>
                           </li>
-                        </ul>
+                        </ul> */}
                       </div>
                       <div className="listing-content">
                         <h3 className="title">
@@ -138,7 +138,7 @@ const BrandComponent = ({ category }) => {
                               {business.attributes.phone_number}
                             </a>
                           )}
-                          <span className="status st-open">Open</span>
+                          {/* <span className="status st-open">Open</span> */}
                         </span>
                         <div className="listing-meta">
                           <ul>

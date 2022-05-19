@@ -1,34 +1,46 @@
-import Link from "next/link";
-import Head from "next/head";
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import Layout from "../../components/layout/Layout";
 import { fetchAPI } from "../../lib/api";
-import { toCamelCase } from "../utils";
 import { getStrapiMedia } from "../../lib/media";
 
-const BrandComponent = ({ category }) => {
+const Brand = () => {
   const [businesses, setBusiness] = useState("");
-  const url = document.location.toString().split("/");
-  const state = url[url.length - 3].toUpperCase();
-  const city = toCamelCase(url[url.length - 2]);
   useEffect(() => {
     (async () => {
       const businesses = await fetchAPI("/businesses", {
         filters: {
-          canada_city: {
-            city_ascii: city,
-          },
-          service_categories: {
-            name: category,
+          services: {
+            name: "Brand",
           },
         },
         populate: "*",
       });
       setBusiness(businesses.data);
     })();
-  },[city]);
+  },[]);
   return (
-    <section className="products-area pt-50 pb-100">
+    <Layout>
+      <div className="home-header">
+        <img
+          src="/assets/images/flooring-banner.jpg"
+          width="100%"
+          style={{height: "100%"}}
+          alt="home-header"
+        />
+        <div className="home-header-content">
+          <div className="home-header-body">
+            <h1
+              style={{ width: "80%" }}
+              className="MuiTypography-root MuiTypography-h1 MuiTypography-alignLeft"
+            >
+              Discover Top Flooring Brands
+            </h1>
+          </div>
+        </div>
+      </div>
+      <section className="products-area pt-50 pb-100">
       <div className="container">
         <div className="products-filter mb-30">
           <div className="row justify-content-between align-items-center">
@@ -123,7 +135,7 @@ const BrandComponent = ({ category }) => {
                           </Link>
                         </h3>
                         <p>
-                          Popular {category} in{" "}
+                          Popular Brand in{" "}
                           {
                             business.attributes.canada_city.data.attributes
                               .city_ascii
@@ -161,92 +173,15 @@ const BrandComponent = ({ category }) => {
               })}
               {businesses.length == 0 && 
                 <div>
-                  <p style={{fontSize:"20px"}}>We apologize, we haven’t added any {category} businesses for your area quite yet. Please let your local business owners in {city} know to add themselves for FREE.</p>
+                  <p style={{fontSize:"20px"}}>We apologize, we haven’t added any brands for your area quite yet. Please let your local business owners know to add themselves for FREE.</p>
                 </div>
               }
-            {/* <div className="col-lg-4 col-md-6 col-sm-12">
-              <div className="listing-item listing-grid-item-two mb-30">
-                <div className="listing-thumbnail">
-                  <Link href="/brand/name">
-                    <a>
-                      <img
-                        src="/assets/images/listing/listing-grid-32.jpg"
-                        alt="Listing Image"
-                      />
-                    </a>
-                  </Link>
-                  <a href="#" className="cat-btn">
-                    <i className="flaticon-chef" />
-                  </a>
-                  <span className="featured-btn">Featured</span>
-                  <ul className="ratings ratings-four">
-                    <li className="star">
-                      <i className="flaticon-star-1" />
-                    </li>
-                    <li className="star">
-                      <i className="flaticon-star-1" />
-                    </li>
-                    <li className="star">
-                      <i className="flaticon-star-1" />
-                    </li>
-                    <li className="star">
-                      <i className="flaticon-star-1" />
-                    </li>
-                    <li className="star">
-                      <i className="flaticon-star-1" />
-                    </li>
-                    <li>
-                      <span>
-                        <a href="#">(02 Reviews)</a>
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="listing-content">
-                  <h3 className="title">
-                    <Link href="/brand/name">
-                      <a>Coffee Time</a>
-                    </Link>
-                  </h3>
-                  <p>Popular restaurant in california</p>
-                  <span className="phone-meta">
-                    <i className="ti-tablet" />
-                    <a href="tel:+12134293454">+1 (213) 429 3454</a>
-                    <span className="status st-open">Open</span>
-                  </span>
-                  <div className="listing-meta">
-                    <ul>
-                      <li>
-                        <span>
-                          <i className="ti-location-pin" />
-                          California, USA
-                        </span>
-                      </li>
-                      <li>
-                        <span>
-                          <i className="ti-heart" />
-                          <a href="#">Save</a>
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
-          {/* <div className="row">
-            <div className="col-lg-12">
-              <div className="button text-center mt-50 wow fadeInUp">
-                <Link href="#">
-                  <a className="main-btn icon-btn">Load More</a>
-                </Link>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </section>
+    </Layout>
   );
 };
 
-export default BrandComponent;
+export default Brand;

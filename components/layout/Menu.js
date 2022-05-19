@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React, { Fragment } from "react";
-import { getSlug } from "../utils";
 
 export const Home = () => (
   <Fragment>

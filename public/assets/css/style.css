@@ -3013,17 +3013,23 @@ ul.ratings li {
 ==========================*/
 .listing-item .listing-thumbnail {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #bcbcbc;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .listing-item .listing-thumbnail img {
     width: 100%;
+    height: 100%;
   }
 }
 
 @media (max-width: 991px) {
   .listing-item .listing-thumbnail img {
     width: 100%;
+    height: 100%;
   }
 }
 

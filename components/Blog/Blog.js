@@ -39,7 +39,7 @@ const Blog = ({ articles, categories }) => {
                       <div className="entry-content">
                         <a href="#" className="cat-btn">
                           <Moment format="MMM Do YYYY">
-                            {article.attributes.published_at}
+                            {article.attributes.createdAt}
                           </Moment>
                         </a>
                         <div className="post-meta">

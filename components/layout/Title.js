@@ -8,14 +8,8 @@ const Title = () => {
   const [service, setService] = useState("");
   useEffect(() => {
     const url = document.location.toString().split("/");
-    let state = url[url.length - 3];
-    if (state.includes("%")) {
-      let stateItems = state.split("%20");
-      state = toCamelCase(stateItems[0]) + " " + toCamelCase(stateItems[1]);
-      setState(state);
-    } else {
-      setState(toCamelCase(state));
-    }
+    let state = url[url.length - 3].toUpperCase();
+    setState(state);
     setLocation(toCamelCase(url[url.length - 2]));
     const service = url[url.length - 1];
     let serviceItems = service.split("-");

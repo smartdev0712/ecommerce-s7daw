@@ -1,10 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 import { Accordion, Tab, Nav } from "react-bootstrap";
 import ListingDetailsRight from "../../components/ListingDetailsRight";
 import Layout from "../../components/layout/Layout";
+import { getStrapiMedia } from "../../lib/media";
+import { fetchAPI } from "../../lib/api";
 
-const Name = () => {
+const Name = ({ business }) => {
   return (
     <Layout>
       <section className="page-breadcrumbs page-breadcrumbs-one pt-120 pb-70">
@@ -15,17 +18,19 @@ const Name = () => {
                 <div className="listing-info-name">
                   <div className="info-name d-flex">
                     <div className="thumb">
-                      <img
-                        src="/assets/images/listing/info-1.jpg"
+                      <Image
+                        src={getStrapiMedia(business.attributes.business_logo)}
                         alt="thumb image"
+                        width="120px"
+                        height="120px"
                       />
                     </div>
                     <div className="content">
-                      <span className="cat-btn">Restaurant</span>
-                      <h3>Food Corner</h3>
+                      <span className="cat-btn">{business.attributes.service_categories.data[0].attributes.name}</span>
+                      <h3>{business.attributes.name}</h3>
                       <p className="tag">
-                        <a href="#">Popular restaurant</a>,
-                        <a href="#">California</a>
+                        <a href="#">Popular Business</a>,
+                        <a href="#">{business.attributes.canada_city.data.attributes.city_ascii}</a>
                       </p>
                     </div>
                   </div>
@@ -61,13 +66,13 @@ const Name = () => {
                         <li>
                           <span>
                             <i className="ti-location-pin" />
-                            California, USA
+                            {business.attributes.address}
                           </span>
-                        </li>
+                        </li><br />
                         <li>
                           <span>
                             <i className="ti-tablet" />
-                            <a href="tel:+12134293454">+1 (213) 429 3454</a>
+                            <a href={`tel:${business.attributes.phone_number}`}>{business.attributes.phone_number}</a>
                           </span>
                         </li>
                       </ul>
@@ -101,17 +106,9 @@ const Name = () => {
             <div className="col-lg-8">
               <div className="listing-details-wrapper listing-details-wrapper-one">
                 <div className="listing-content mb-50 wow fadeInUp">
-                  <h3 className="title">Delicious Restaurant</h3>
+                  <h3 className="title">Popular Business in {business.attributes.canada_city.data.attributes.city_ascii}</h3>
                   <p>
-                    Parturient varius elementum maecenas faucibus maecenas
-                    inceptos commodo metus vitae ac pretium magnis. Ridiculus
-                    aenean diam duis montes mattis curae dis platea cubilia
-                    fames justo nullam per incepto Accumsan mollis, semper nisl
-                    nulla per curae ante tellus cursus ut blandit eleifend ut
-                    adipiscing fringilla Sociosqu penatibus nascetur senectus,
-                    molestie sed habitant adipiscing maecenas ultrices curae
-                    sociis mi eros ultrices euismod risus cubilia eget habitasse
-                    facilisic
+                    {business.attributes.description}
                   </p>
                   <p className="para">
                     Eros senectus etiam sed habitasse arcu habitant nulla nam
@@ -716,12 +713,39 @@ const Name = () => {
                 </div>
               </div>
             </div>
-            <ListingDetailsRight />
+            <ListingDetailsRight business={business} />
           </div>
         </div>
       </section>
     </Layout>
   );
 };
+
+export async function getStaticPaths() {
+  const businessesRes = await fetchAPI("/businesses", { fields: ["slug"] });
+
+  return {
+    paths: businessesRes.data.map((business) => ({
+      params: {
+        slug: business.attributes.slug,
+      },
+    })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const businessesRes = await fetchAPI("/businesses", {
+    filters: {
+      slug: params.slug,
+    },
+    populate: "*",
+  });
+
+  return {
+    props: { business: businessesRes.data[0] },
+    revalidate: 1,
+  };
+}
 
 export default Name;

@@ -46,9 +46,9 @@ const ServiceTemplateFooter = () => {
               onClick={() => setAccordionActive("collapseOne")}
               aria-expanded={activeAccordion("collapseOne")}
             >
-              <h3>
+              <h4>
                 Why Choose {service} in {location}?
-              </h3>
+              </h4>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="collapseOne">
               <div className="card-body">
@@ -73,9 +73,9 @@ const ServiceTemplateFooter = () => {
               onClick={() => setAccordionActive("collapseTwo")}
               aria-expanded={activeAccordion("collapseTwo")}
             >
-              <h3>
+              <h4>
                 What is the typical cost for {location} {service}?
-              </h3>
+              </h4>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="collapseTwo">
               <div className="card-body">
@@ -94,9 +94,9 @@ const ServiceTemplateFooter = () => {
               onClick={() => setAccordionActive("collapseThree")}
               aria-expanded={activeAccordion("collapseThree")}
             >
-              <h3>
+              <h4>
                 Who is the best {service} in {location}?
-              </h3>
+              </h4>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="collapseThree">
               <div className="card-body">
@@ -116,9 +116,9 @@ const ServiceTemplateFooter = () => {
               onClick={() => setAccordionActive("collapseFour")}
               aria-expanded={activeAccordion("collapseFour")}
             >
-              <h3>
+              <h4>
                 What’s the availability of {location} {service} services?
-              </h3>
+              </h4>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="collapseFour">
               <div className="card-body">

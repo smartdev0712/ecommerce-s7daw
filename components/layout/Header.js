@@ -22,7 +22,6 @@ const Header = ({ category, cityInfo }) => {
   const getDeliveryUrl = async (e) => {
     e.preventDefault();
     const value = toCamelCase(e.target.location.value);
-    console.log(value)
     const cityInfoItems = await fetchAPI("/canada-cities", {
       filters: {
         city_ascii: {
@@ -32,7 +31,6 @@ const Header = ({ category, cityInfo }) => {
       populate: "*",
     });
     const cityInfo = cityInfoItems.data[0];
-    console.log(cityInfo);
     if (cityInfo == undefined) {
       alert("Please type a city name correctly");
     } else {

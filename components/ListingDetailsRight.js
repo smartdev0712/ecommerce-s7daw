@@ -1,6 +1,6 @@
 import React from "react";
 
-const ListingDetailsRight = () => {
+const ListingDetailsRight = ({ business }) => {
   return (
     <div className="col-lg-4">
       <div className="sidebar-widget-area">
@@ -68,7 +68,7 @@ const ListingDetailsRight = () => {
         <div className="widget contact-info-widget mb-30 wow fadeInUp">
           <div className="contact-info-widget-wrap">
             <div className="contact-map">
-              <iframe src="https://maps.google.com/maps?q=new%20york&t=&z=13&ie=UTF8&iwloc=&output=embed" />
+              <iframe src={`https://maps.google.com/maps?q=${business.attributes.canada_city.data.attributes.city_ascii}&t=&z=13&ie=UTF8&iwloc=&output=embed`} />
               <a href="#" className="support-icon">
                 <i className="flaticon-headphone" />
               </a>
@@ -78,19 +78,19 @@ const ListingDetailsRight = () => {
               <div className="info-list">
                 <p>
                   <i className="ti-tablet" />
-                  <a href="tel:+12134293454">+1 (213) 429 3454</a>
+                  <a href={`tel:${business.attributes.phone_number}`}>{business.attributes.phone_number}</a>
                 </p>
                 <p>
                   <i className="ti-location-pin" />
-                  45/A Natura, Barcelona, Spain
+                  {business.attributes.address}
                 </p>
                 <p>
                   <i className="ti-email" />
-                  <a href="mailto:contact@example.com">contact@example.com</a>
+                  <a href={`mailto:${business.attributes.contact_email}`}>{business.attributes.contact_email}</a>
                 </p>
                 <p>
                   <i className="ti-world" />
-                  <a href="https://www.s7daw.com/">www.myWebsite.com</a>
+                  <a href={business.attributes.website}>{business.attributes.website}</a>
                 </p>
               </div>
             </div>
@@ -101,27 +101,27 @@ const ListingDetailsRight = () => {
           <ul className="time-info">
             <li>
               <span className="day">Monday</span>
-              <span className="time">08:00 - 21:00</span>
+              <span className="time">08:00 - 17:00</span>
             </li>
             <li>
               <span className="day">Tuesday</span>
-              <span className="time">08:00 - 21:00</span>
+              <span className="time">08:00 - 17:00</span>
             </li>
             <li>
               <span className="day">Wednesday</span>
-              <span className="time">08:00 - 21:00</span>
+              <span className="time">08:00 - 17:00</span>
             </li>
             <li>
               <span className="day">Thursday</span>
-              <span className="time">08:00 - 21:00</span>
+              <span className="time">08:00 - 17:00</span>
             </li>
             <li>
               <span className="day">Friday</span>
-              <span className="time">08:00 - 21:00</span>
+              <span className="time">08:00 - 17:00</span>
             </li>
             <li>
               <span className="day">Saturday</span>
-              <span className="time">08:00 - 21:00</span>
+              <span className="time">08:00 - 17:00</span>
             </li>
             <li>
               <span className="day">Sunday</span>

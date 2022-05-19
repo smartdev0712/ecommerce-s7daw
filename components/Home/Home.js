@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
+
+import { fetchAPI } from "../../lib/api";
+import { getStrapiMedia } from "../../lib/media";
 
 const HomeComponent = () => {
+  const [topBusinesses, setTopBusinesses] = useState("");
+  const [topBrands, setTopBrands] = useState("");
+  const [businesses, setBusinesses] = useState("");
+  useEffect(() => {
+    (async () => {
+      const businesses = await fetchAPI("/businesses", {
+        populate: "*"
+      });
+      const brands = await fetchAPI("/businesses", {
+        filters: {
+          services: {
+            name: "Brand",
+          },
+        },
+        populate: "*",
+      });
+      setTopBrands(brands.data);
+      setTopBusinesses(businesses.data.slice(0, 3));
+      setBusinesses(businesses.data);
+    })();
+  });
+  
   return (
     <div className="delivery-container container-fluid">
       <div className="delivery-body">
@@ -21,75 +47,87 @@ const HomeComponent = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="listing-item listing-grid-item-two mb-30">
-              <div className="listing-thumbnail">
-                <Link href="/brand/name">
-                  <a>
-                    <img
-                      src="/assets/images/listing/listing-grid-27.jpg"
-                      alt="Listing Image"
-                    />
-                  </a>
-                </Link>
-                <a href="#" className="cat-btn">
-                  <i className="flaticon-chef" />
-                </a>
-                <span className="featured-btn">Featured</span>
-                <ul className="ratings ratings-five">
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#">(07 Reviews)</a>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="listing-content">
-                <h3 className="title">
-                  <Link href="/brand/name">
-                    <a>Easter Plaza</a>
-                  </Link>
-                </h3>
-                <span className="phone-meta">
-                  <i className="ti-tablet" />
-                  <a href="tel:+12134293454">+1 (213) 429 3454</a>
-                  <span className="status st-open">Open</span>
-                </span>
-                <div className="listing-meta">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="ti-location-pin" />
-                        California, USA
+          {topBrands &&
+            topBrands.map((brand, index) => {
+              return (
+                <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
+                  <div className="listing-item listing-grid-item-two mb-30">
+                    <div className="listing-thumbnail">
+                      <Link href={`/brand/${brand.attributes.slug}`}>
+                        <a className="m-5">
+                          <Image
+                            src={getStrapiMedia(brand.attributes.business_logo)}
+                            alt="Listing Image"
+                            width="270px"
+                            height="195px"
+                          />
+                        </a>
+                      </Link>
+                      <a href="#" className="cat-btn">
+                        <i className="flaticon-chef" />
+                      </a>
+                      <span className="featured-btn">Featured</span>
+                      <ul className="ratings ratings-five">
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li>
+                          <span>
+                            <a href="#">(01 Reviews)</a>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="listing-content">
+                      <h3 className="title">
+                        <Link href={`/brand/${brand.attributes.slug}`}>
+                          <a>{brand.attributes.name}</a>
+                        </Link>
+                      </h3>
+                      <span className="phone-meta">
+                        <i className="ti-tablet" />
+                        {brand.attributes.phone_number && (
+                          <a href={`tel:${brand.attributes.phone_number}`}>
+                            {brand.attributes.phone_number}
+                          </a>
+                        )}
+                        <span className="status st-open">Open</span>
                       </span>
-                    </li>
-                    <li>
-                      <span>
-                        <i className="ti-heart" />
-                        <a href="#">Save</a>
-                      </span>
-                    </li>
-                  </ul>
+                      <div className="listing-meta">
+                        <ul>
+                          <li>
+                            <span>
+                              <i className="ti-location-pin" />
+                              {brand.attributes.canada_city.data.attributes.city_ascii.toUpperCase()}
+                              , CANADA
+                            </span>
+                          </li>
+                          <li>
+                            <span>
+                              <i className="ti-heart" />
+                              <a href="#">Save</a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
+              );
+            })}
+          {/* <div className="col-lg-3 col-md-4 col-sm-6">
             <div className="listing-item listing-grid-item-two mb-30">
               <div className="listing-thumbnail">
                 <Link href="/brand/name">
@@ -156,75 +194,7 @@ const HomeComponent = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="listing-item listing-grid-item-two mb-30">
-              <div className="listing-thumbnail">
-                <Link href="/brand/name">
-                  <a>
-                    <img
-                      src="/assets/images/listing/listing-grid-27.jpg"
-                      alt="Listing Image"
-                    />
-                  </a>
-                </Link>
-                <a href="#" className="cat-btn">
-                  <i className="flaticon-chef" />
-                </a>
-                <span className="featured-btn">Featured</span>
-                <ul className="ratings ratings-four">
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#">(03 Reviews)</a>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="listing-content">
-                <h3 className="title">
-                  <Link href="/brand/name">
-                    <a>Sky Center</a>
-                  </Link>
-                </h3>
-                <span className="phone-meta">
-                  <i className="ti-tablet" />
-                  <a href="tel:+12134293454">+1 (213) 429 3454</a>
-                  <span className="status st-open">Open</span>
-                </span>
-                <div className="listing-meta">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="ti-location-pin" />
-                        California, USA
-                      </span>
-                    </li>
-                    <li>
-                      <span>
-                        <i className="ti-heart" />
-                        <a href="#">Save</a>
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="delivery-body">
@@ -246,209 +216,86 @@ const HomeComponent = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="listing-item listing-grid-item-two mb-30">
-              <div className="listing-thumbnail">
-                <Link href="/brand/name">
-                  <a>
-                    <img
-                      src="/assets/images/listing/listing-grid-27.jpg"
-                      alt="Listing Image"
-                    />
-                  </a>
-                </Link>
-                <a href="#" className="cat-btn">
-                  <i className="flaticon-chef" />
-                </a>
-                <span className="featured-btn">Featured</span>
-                <ul className="ratings ratings-four">
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#">(05 Reviews)</a>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="listing-content">
-                <h3 className="title">
-                  <Link href="/brand/name">
-                    <a>Party Corner</a>
-                  </Link>
-                </h3>
-                <span className="phone-meta">
-                  <i className="ti-tablet" />
-                  <a href="tel:+12134293454">+1 (213) 429 3454</a>
-                  <span className="status st-open">Open</span>
-                </span>
-                <div className="listing-meta">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="ti-location-pin" />
-                        California, USA
+          {topBusinesses &&
+            topBusinesses.map((brand, index) => {
+              return (
+                <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
+                  <div className="listing-item listing-grid-item-two mb-30">
+                    <div className="listing-thumbnail">
+                      <Link href={`/brand/${brand.attributes.slug}`}>
+                        <a className="m-5">
+                          <Image
+                            src={getStrapiMedia(brand.attributes.business_logo)}
+                            alt="Listing Image"
+                            width="270px"
+                            height="195px"
+                          />
+                        </a>
+                      </Link>
+                      <a href="#" className="cat-btn">
+                        <i className="flaticon-chef" />
+                      </a>
+                      <span className="featured-btn">Featured</span>
+                      <ul className="ratings ratings-five">
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li>
+                          <span>
+                            <a href="#">(01 Reviews)</a>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="listing-content">
+                      <h3 className="title">
+                        <Link href={`/brand/${brand.attributes.slug}`}>
+                          <a>{brand.attributes.name}</a>
+                        </Link>
+                      </h3>
+                      <span className="phone-meta">
+                        <i className="ti-tablet" />
+                        {brand.attributes.phone_number && (
+                          <a href={`tel:${brand.attributes.phone_number}`}>
+                            {brand.attributes.phone_number}
+                          </a>
+                        )}
+                        <span className="status st-open">Open</span>
                       </span>
-                    </li>
-                    <li>
-                      <span>
-                        <i className="ti-heart" />
-                        <a href="#">Save</a>
-                      </span>
-                    </li>
-                  </ul>
+                      <div className="listing-meta">
+                        <ul>
+                          <li>
+                            <span>
+                              <i className="ti-location-pin" />
+                              {brand.attributes.canada_city.data.attributes.city_ascii.toUpperCase()}
+                              , CANADA
+                            </span>
+                          </li>
+                          <li>
+                            <span>
+                              <i className="ti-heart" />
+                              <a href="#">Save</a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="listing-item listing-grid-item-two mb-30">
-              <div className="listing-thumbnail">
-                <Link href="/brand/name">
-                  <a>
-                    <img
-                      src="/assets/images/listing/listing-grid-27.jpg"
-                      alt="Listing Image"
-                    />
-                  </a>
-                </Link>
-                <a href="#" className="cat-btn">
-                  <i className="flaticon-chef" />
-                </a>
-                <ul className="ratings ratings-five">
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#">(02 Reviews)</a>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="listing-content">
-                <h3 className="title">
-                  <Link href="/brand/name">
-                    <a>Gym Ground</a>
-                  </Link>
-                </h3>
-                <span className="phone-meta">
-                  <i className="ti-tablet" />
-                  <a href="tel:+12134293454">+1 (213) 429 3454</a>
-                  <span className="status st-open">Open</span>
-                </span>
-                <div className="listing-meta">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="ti-location-pin" />
-                        California, USA
-                      </span>
-                    </li>
-                    <li>
-                      <span>
-                        <i className="ti-heart" />
-                        <a href="#">Save</a>
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="listing-item listing-grid-item-two mb-30">
-              <div className="listing-thumbnail">
-                <Link href="/brand/name">
-                  <a>
-                    <img
-                      src="/assets/images/listing/listing-grid-27.jpg"
-                      alt="Listing Image"
-                    />
-                  </a>
-                </Link>
-                <a href="#" className="cat-btn">
-                  <i className="flaticon-chef" />
-                </a>
-                <span className="featured-btn">Featured</span>
-                <ul className="ratings ratings-four">
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#">(04 Reviews)</a>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="listing-content">
-                <h3 className="title">
-                  <Link href="/brand/name">
-                    <a>Coffee Time</a>
-                  </Link>
-                </h3>
-                <span className="phone-meta">
-                  <i className="ti-tablet" />
-                  <a href="tel:+12134293454">+1 (213) 429 3454</a>
-                  <span className="status st-open">Open</span>
-                </span>
-                <div className="listing-meta">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="ti-location-pin" />
-                        California, USA
-                      </span>
-                    </li>
-                    <li>
-                      <span>
-                        <i className="ti-heart" />
-                        <a href="#">Save</a>
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+              );
+            })}
         </div>
       </div>
       <div className="delivery-body">
@@ -470,208 +317,86 @@ const HomeComponent = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="listing-item listing-grid-item-two mb-30">
-              <div className="listing-thumbnail">
-                <Link href="/brand/name">
-                  <a>
-                    <img
-                      src="/assets/images/listing/listing-grid-27.jpg"
-                      alt="Listing Image"
-                    />
-                  </a>
-                </Link>
-                <a href="#" className="cat-btn">
-                  <i className="flaticon-chef" />
-                </a>
-                <ul className="ratings ratings-four">
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#">(02 Reviews)</a>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="listing-content">
-                <h3 className="title">
-                  <Link href="/brand/name">
-                    <a>Easter Plaza</a>
-                  </Link>
-                </h3>
-                <span className="phone-meta">
-                  <i className="ti-tablet" />
-                  <a href="tel:+12134293454">+1 (213) 429 3454</a>
-                  <span className="status st-open">Open</span>
-                </span>
-                <div className="listing-meta">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="ti-location-pin" />
-                        California, USA
+          {businesses &&
+            businesses.map(brand => {
+              return (
+                <div className="col-lg-3 col-md-4 col-sm-6" key={brand.id}>
+                  <div className="listing-item listing-grid-item-two mb-30">
+                    <div className="listing-thumbnail">
+                      <Link href={`/brand/${brand.attributes.slug}`}>
+                        <a className="m-5">
+                          <Image
+                            src={getStrapiMedia(brand.attributes.business_logo)}
+                            alt="Listing Image"
+                            width="270px"
+                            height="195px"
+                          />
+                        </a>
+                      </Link>
+                      <a href="#" className="cat-btn">
+                        <i className="flaticon-chef" />
+                      </a>
+                      <span className="featured-btn">Featured</span>
+                      <ul className="ratings ratings-five">
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1" />
+                        </li>
+                        <li>
+                          <span>
+                            <a href="#">(01 Reviews)</a>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="listing-content">
+                      <h3 className="title">
+                        <Link href={`/brand/${brand.attributes.slug}`}>
+                          <a>{brand.attributes.name}</a>
+                        </Link>
+                      </h3>
+                      <span className="phone-meta">
+                        <i className="ti-tablet" />
+                        {brand.attributes.phone_number && (
+                          <a href={`tel:${brand.attributes.phone_number}`}>
+                            {brand.attributes.phone_number}
+                          </a>
+                        )}
+                        <span className="status st-open">Open</span>
                       </span>
-                    </li>
-                    <li>
-                      <span>
-                        <i className="ti-heart" />
-                        <a href="#">Save</a>
-                      </span>
-                    </li>
-                  </ul>
+                      <div className="listing-meta">
+                        <ul>
+                          <li>
+                            <span>
+                              <i className="ti-location-pin" />
+                              {brand.attributes.canada_city.data.attributes.city_ascii.toUpperCase()}
+                              , CANADA
+                            </span>
+                          </li>
+                          <li>
+                            <span>
+                              <i className="ti-heart" />
+                              <a href="#">Save</a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="listing-item listing-grid-item-two mb-30">
-              <div className="listing-thumbnail">
-                <Link href="/brand/name">
-                  <a>
-                    <img
-                      src="/assets/images/listing/listing-grid-27.jpg"
-                      alt="Listing Image"
-                    />
-                  </a>
-                </Link>
-                <a href="#" className="cat-btn">
-                  <i className="flaticon-chef" />
-                </a>
-                <span className="featured-btn">Featured</span>
-                <ul className="ratings ratings-four">
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#">(04 Reviews)</a>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="listing-content">
-                <h3 className="title">
-                  <Link href="/brand/name">
-                    <a>Miyami Sea</a>
-                  </Link>
-                </h3>
-                <span className="phone-meta">
-                  <i className="ti-tablet" />
-                  <a href="tel:+12134293454">+1 (213) 429 3454</a>
-                  <span className="status st-open">Open</span>
-                </span>
-                <div className="listing-meta">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="ti-location-pin" />
-                        California, USA
-                      </span>
-                    </li>
-                    <li>
-                      <span>
-                        <i className="ti-heart" />
-                        <a href="#">Save</a>
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="listing-item listing-grid-item-two mb-30">
-              <div className="listing-thumbnail">
-                <Link href="/brand/name">
-                  <a>
-                    <img
-                      src="/assets/images/listing/listing-grid-27.jpg"
-                      alt="Listing Image"
-                    />
-                  </a>
-                </Link>
-                <a href="#" className="cat-btn">
-                  <i className="flaticon-chef" />
-                </a>
-                <ul className="ratings ratings-five">
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1" />
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#">(07 Reviews)</a>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="listing-content">
-                <h3 className="title">
-                  <Link href="/brand/name">
-                    <a>City Palace</a>
-                  </Link>
-                </h3>
-                <span className="phone-meta">
-                  <i className="ti-tablet" />
-                  <a href="tel:+12134293454">+1 (213) 429 3454</a>
-                  <span className="status st-open">Open</span>
-                </span>
-                <div className="listing-meta">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="ti-location-pin" />
-                        California, USA
-                      </span>
-                    </li>
-                    <li>
-                      <span>
-                        <i className="ti-heart" />
-                        <a href="#">Save</a>
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+              );
+            })}
         </div>
       </div>
     </div>

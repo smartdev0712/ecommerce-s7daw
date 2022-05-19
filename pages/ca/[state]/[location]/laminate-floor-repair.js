@@ -5,7 +5,7 @@ import ServiceTemplate from "../../../../components/serviceTemplate";
 const LaminateRepair = () => {
   return (
     <Layout category={"laminate-floor-repair"}>
-      <ServiceTemplate category={"Laminate Floor Repair"} />
+      <ServiceTemplate category={"Laminate Flooring Repair"} />
     </Layout>
   );
 };

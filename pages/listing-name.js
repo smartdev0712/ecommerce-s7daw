@@ -11,7 +11,6 @@ import { fetchAPI } from '../lib/api';
 const AddListing = () => {
   const router = useRouter()
   const [category, setCategory] = useState([])
-  console.log(category)
 
   const handleCategory = async (e) => {
     // e.preventDefault();
@@ -49,7 +48,6 @@ const AddListing = () => {
     const categoryItems = document.querySelectorAll(
       'input[name="category"]:checked'
     );
-    console.log(categoryItems)
 
     const categoryRes = []
     for (let i = 0; i < categoryItems.length; i++) {

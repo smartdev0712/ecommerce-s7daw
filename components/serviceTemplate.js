@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { toCamelCase } from "./utils";
+import React from "react";
 import Title from "./layout/Title";
 import PageBanner from "./layout/PageBanner";
 import BrandComponent from './Brand/Brand';
@@ -11,7 +9,7 @@ const ServiceTemplate = ({ category }) => {
     <>
       <PageBanner category={category} />
       <Title />
-      <BrandComponent />
+      <BrandComponent category={category} />
       <ServiceTemplateFooter />
     </>
   );

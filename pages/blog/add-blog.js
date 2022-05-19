@@ -36,7 +36,6 @@ const AddBlog = () => {
     await http.post('/api/upload',file)
       .then((response) => {
         imageID = response.data[0].id
-        console.log(imageID)
       })
       .catch((error) => {
         console.log(error);

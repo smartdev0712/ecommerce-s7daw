@@ -80,7 +80,7 @@ const BrandComponent = ({ category }) => {
                   <div className="col-lg-4 col-md-6 col-sm-6" key={index}>
                     <div className="listing-item listing-grid-item-two mb-30">
                       <div className="listing-thumbnail">
-                        <Link href={`/brand/${business.attributes.slug}`}>
+                        <Link href={`/listing/${business.attributes.slug}`}>
                           <a className="m-5">
                             <Image
                               src={getStrapiMedia(
@@ -120,7 +120,7 @@ const BrandComponent = ({ category }) => {
                       </div>
                       <div className="listing-content">
                         <h3 className="title">
-                          <Link href={`/brand/${business.attributes.slug}`}>
+                          <Link href={`/listing/${business.attributes.slug}`}>
                             <a>{business.attributes.name}</a>
                           </Link>
                         </h3>

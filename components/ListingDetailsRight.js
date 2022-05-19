@@ -4,7 +4,7 @@ const ListingDetailsRight = ({ business }) => {
   return (
     <div className="col-lg-4">
       <div className="sidebar-widget-area">
-        <div className="widget reservation-form-widget mb-30 wow fadeInUp">
+        {/* <div className="widget reservation-form-widget mb-30 wow fadeInUp">
           <h4 className="widget-title">Reservation</h4>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form_group">
@@ -64,7 +64,7 @@ const ListingDetailsRight = ({ business }) => {
               <button className="main-btn icon-btn">Book Now</button>
             </div>
           </form>
-        </div>
+        </div> */}
         <div className="widget contact-info-widget mb-30 wow fadeInUp">
           <div className="contact-info-widget-wrap">
             <div className="contact-map">

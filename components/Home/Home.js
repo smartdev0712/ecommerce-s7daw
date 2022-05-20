@@ -3,32 +3,32 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { fetchAPI } from "../../lib/api";
+import http from '../../components/http'
 import { getStrapiMedia } from "../../lib/media";
 import { parseCookies } from "nookies";
 
-const HomeComponent = ({ topBrands, topBusinesses, businesses }) => {
-  console.log(topBrands)
-  // const [topBusinesses, setTopBusinesses] = useState("");
-  // const [topBrands, setTopBrands] = useState("");
-  // const [businesses, setBusinesses] = useState("");
-  // useEffect(() => {
-  //   (async () => {
-  //     const businesses = await fetchAPI("/businesses", {
-  //       populate: "*"
-  //     });
-  //     const brands = await fetchAPI("/businesses", {
-  //       filters: {
-  //         services: {
-  //           name: "Brand",
-  //         },
-  //       },
-  //       populate: "*",
-  //     });
-  //     setTopBrands(brands.data);
-  //     setTopBusinesses(businesses.data.slice(0, 3));
-  //     setBusinesses(businesses.data);
-  //   })();
-  // });
+const HomeComponent = () => {
+  const [topBusinesses, setTopBusinesses] = useState("");
+  const [topBrands, setTopBrands] = useState("");
+  const [businesses, setBusinesses] = useState("");
+  useEffect(() => {
+    (async () => {
+      const businesses = await fetchAPI("/businesses", {
+        populate: "*"
+      });
+      const brands = await fetchAPI("/businesses", {
+        filters: {
+          services: {
+            name: "Brand",
+          },
+        },
+        populate: "*",
+      });
+      setTopBrands(brands.data);
+      setTopBusinesses(businesses.data.slice(0, 3));
+      setBusinesses(businesses.data);
+    })();
+  }, []);
 
   return (
     <div className="delivery-container container-fluid">
@@ -342,28 +342,28 @@ const HomeComponent = ({ topBrands, topBusinesses, businesses }) => {
   );
 };
 
-export async function getServerSideProps({context}) {
+// export async function getServerSideProps({context}) {
 
-  const businesses = await fetchAPI("/businesses", {
-    populate: "*",
-  });
+//   const businesses = await fetchAPI("/businesses", {
+//     populate: "*",
+//   });
 
-  const brands = await fetchAPI("/businesses", {
-    filters: {
-      services: {
-        name: "Brand",
-      },
-    },
-    populate: "*",
-  });
+//   const brands = await fetchAPI("/businesses", {
+//     filters: {
+//       services: {
+//         name: "Brand",
+//       },
+//     },
+//     populate: "*",
+//   });
   
-  return {
-    props: {
-      topBrands: brands.data,
-      topBusinesses: businesses.data.slice(0, 3),
-      businesses: businesses.data,
-    },
-  };
-}
+//   return {
+//     props: {
+//       topBrands: brands.data,
+//       topBusinesses: businesses.data.slice(0, 3),
+//       businesses: businesses.data,
+//     },
+//   };
+// }
 
 export default HomeComponent;

@@ -9,6 +9,7 @@ import { getStrapiMedia } from "../../lib/media";
 const BrandComponent = ({ category }) => {
   const [businesses, setBusiness] = useState("");
   const [cityName, setCity] = useState("");
+
   useEffect(() => {
     const url = document.location.toString().split("/");
     const state = url[url.length - 3].toUpperCase();
@@ -28,7 +29,7 @@ const BrandComponent = ({ category }) => {
       setBusiness(businesses.data);
       setCity(city)
     })();
-  });
+  },[category]);
   return (
     <section className="products-area pt-50 pb-100">
       <div className="container">

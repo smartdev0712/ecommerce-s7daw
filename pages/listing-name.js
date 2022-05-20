@@ -77,13 +77,6 @@ const AddListing = () => {
           console.log(error)
         })
     }
-
-    // const serviceRes = await fetchAPI('/services', {
-    //   filters: {
-    //     name: service,
-    //   },
-    //   populate: "*",
-    // });
     
     const cityRes = await fetchAPI('/canada-cities', {
       filters: {
@@ -98,7 +91,15 @@ const AddListing = () => {
     let imageID = ""
     const formData = new FormData();
     formData.append("files", image);
-    await http.post('/api/upload', formData)
+    const login = await http.post(`/api/auth/local`, {
+      identifier: "freelance1773@gmail.com",
+      password: "greenland712",
+    })
+    await http.post('/api/upload', formData, {
+      headers: {
+        Authorization: `Bearer ${login.data.jwt}`
+      }
+    })
       .then(response => {
         imageID = response.data[0].id
       })
@@ -121,6 +122,10 @@ const AddListing = () => {
         "services": serviceRes,
         "canada_city": cityRes.data[0],
         "service_categories": categoryRes,
+      }
+    }, {
+      headers: {
+        Authorization: `Bearer ${login.data.jwt}`
       }
     })
 
@@ -181,6 +186,7 @@ const AddListing = () => {
                     <div className="col-lg-6">
                       <div className="form_group">
                         <Autocomplete
+                          name="address"
                           className="form_control"
                           placeholder="Address *"
                           apiKey={process.env.GOOGLE_API_KEY}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Moment from "react-moment";
 import ReactMarkdown from "react-markdown";
 import React from "react";
@@ -97,7 +98,7 @@ const BlogDetails = ({ article, categories }) => {
                     >
                       <div>
                         {article.attributes.writer.data.attributes.picture && (
-                          <img
+                          <Image
                             src={getStrapiMedia(
                               article.attributes.writer.data.attributes.picture
                             )}
@@ -105,11 +106,9 @@ const BlogDetails = ({ article, categories }) => {
                               article.attributes.writer.data.attributes.picture
                                 .data.attributes.alternativeText
                             }
-                            style={{
-                              position: "static",
-                              borderRadius: "20%",
-                              height: 60,
-                            }}
+                            height="70%"
+                            width="70%"
+                            className="writerPicture"
                           />
                         )}
                       </div>

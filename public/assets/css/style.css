@@ -3033,6 +3033,10 @@ ul.ratings li {
   }
 }
 
+.writerPicture {
+  border-radius: 20%;
+}
+
 span.status {
   padding: 5px 10px;
   float: right;

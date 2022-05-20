@@ -7,9 +7,13 @@ class MyDocument extends Document {
         <Head>
           {/* eslint-disable-next-line */}
           <link
+            href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600&family=Quicksand:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
+          {/* <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Staatliches"
-          />
+          /> */}
           <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/css/uikit.min.css"

@@ -26,18 +26,14 @@ const MyApp = ({ Component, pageProps }) => {
         <title>
           Find Flooring Stores & Contractors Near You | Flooring Metaverse
         </title>
-        <link
+        {/* <link
           rel="shortcut icon"
           href="/assets/images/favicon.ico"
           type="image/png"
-        />
-        {/* <link 
+        /> */}
+        <link 
           rel="shortcut icon"
           href={getStrapiMedia(global.attributes.favicon)}
-        /> */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600&family=Quicksand:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
         />
       </Head>
       {loader && <PreLoader />}

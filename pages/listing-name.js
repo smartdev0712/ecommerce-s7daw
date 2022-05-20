@@ -129,7 +129,7 @@ const AddListing = () => {
       }
     })
 
-    router.push('/')
+    router.push('/listing-name')
   }
 
   return (

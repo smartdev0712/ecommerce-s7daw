@@ -29,7 +29,7 @@ const BrandComponent = ({ category }) => {
       setBusiness(businesses.data);
       setCity(city)
     })();
-  },[category]);
+  },[]);
   return (
     <section className="products-area pt-50 pb-100">
       <div className="container">

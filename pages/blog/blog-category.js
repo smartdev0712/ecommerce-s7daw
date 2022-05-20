@@ -28,7 +28,7 @@ const blog = ({ articles, categories, homepage }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Run API calls in parallel
   const [articleRes, categoryRes, homepageRes] = await Promise.all([
     fetchAPI("/articles", { populate: ["image", "category", "writer"] }),
@@ -46,8 +46,8 @@ export async function getStaticProps() {
       articles: articleRes.data,
       categories: categoryRes.data,
       homepage: homepageRes.data,
-    },
-    revalidate: 1,
+    }
+    // revalidate: 1,
   };
 }
 

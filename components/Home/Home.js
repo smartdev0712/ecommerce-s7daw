@@ -4,40 +4,43 @@ import Image from "next/image";
 
 import { fetchAPI } from "../../lib/api";
 import { getStrapiMedia } from "../../lib/media";
+import { parseCookies } from "nookies";
 
-const HomeComponent = () => {
-  const [topBusinesses, setTopBusinesses] = useState("");
-  const [topBrands, setTopBrands] = useState("");
-  const [businesses, setBusinesses] = useState("");
-  useEffect(() => {
-    (async () => {
-      const businesses = await fetchAPI("/businesses", {
-        populate: "*"
-      });
-      const brands = await fetchAPI("/businesses", {
-        filters: {
-          services: {
-            name: "Brand",
-          },
-        },
-        populate: "*",
-      });
-      setTopBrands(brands.data);
-      setTopBusinesses(businesses.data.slice(0, 3));
-      setBusinesses(businesses.data);
-    })();
-  });
-  
+const HomeComponent = ({ topBrands, topBusinesses, businesses }) => {
+  console.log(topBrands)
+  // const [topBusinesses, setTopBusinesses] = useState("");
+  // const [topBrands, setTopBrands] = useState("");
+  // const [businesses, setBusinesses] = useState("");
+  // useEffect(() => {
+  //   (async () => {
+  //     const businesses = await fetchAPI("/businesses", {
+  //       populate: "*"
+  //     });
+  //     const brands = await fetchAPI("/businesses", {
+  //       filters: {
+  //         services: {
+  //           name: "Brand",
+  //         },
+  //       },
+  //       populate: "*",
+  //     });
+  //     setTopBrands(brands.data);
+  //     setTopBusinesses(businesses.data.slice(0, 3));
+  //     setBusinesses(businesses.data);
+  //   })();
+  // });
+
   return (
     <div className="delivery-container container-fluid">
       <div className="delivery-body">
         <div className="delivery-content">
           <div className="delivery-header">
-            <img
+            <Image
               src="/assets/images/iconTopDeliveries.bba1b6f5.svg"
               alt="top-deliveries"
-              width="10%"
-            ></img>
+              width="100%"
+              height="100%"
+            />
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               <h2 className="MuiTypography-root MuiTypography-h2">
                 <span className="delivery-cat">TOP </span>&nbsp;
@@ -200,11 +203,12 @@ const HomeComponent = () => {
       <div className="delivery-body">
         <div className="delivery-content">
           <div className="delivery-header">
-            <img
+            <Image
               src="/assets/images/iconPopular.8156dfc8.svg"
               alt="top-deliveries"
-              width="10%"
-            ></img>
+              width="100%"
+              height="100%"
+            />
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               <h2 className="MuiTypography-root MuiTypography-h2">
                 <span className="delivery-cat">Top</span>&nbsp;
@@ -268,11 +272,12 @@ const HomeComponent = () => {
       <div className="delivery-body">
         <div className="delivery-content">
           <div className="delivery-header">
-            <img
+            <Image
               src="/assets/images/iconTopDeliveries.bba1b6f5.svg"
               alt="top-deliveries"
-              width="10%"
-            ></img>
+              width="100%"
+              height="100%"
+            />
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               <h2 className="MuiTypography-root MuiTypography-h2">
                 <span className="delivery-cat">Everything </span>&nbsp;
@@ -285,7 +290,7 @@ const HomeComponent = () => {
         </div>
         <div className="row">
           {businesses &&
-            businesses.map(brand => {
+            businesses.map((brand) => {
               return (
                 <div className="col-lg-3 col-md-4 col-sm-6" key={brand.id}>
                   <div className="listing-item listing-grid-item-two mb-30">
@@ -336,5 +341,29 @@ const HomeComponent = () => {
     </div>
   );
 };
+
+export async function getServerSideProps({context}) {
+
+  const businesses = await fetchAPI("/businesses", {
+    populate: "*",
+  });
+
+  const brands = await fetchAPI("/businesses", {
+    filters: {
+      services: {
+        name: "Brand",
+      },
+    },
+    populate: "*",
+  });
+  
+  return {
+    props: {
+      topBrands: brands.data,
+      topBusinesses: businesses.data.slice(0, 3),
+      businesses: businesses.data,
+    },
+  };
+}
 
 export default HomeComponent;

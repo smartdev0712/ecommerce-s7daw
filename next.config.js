@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-const webpack = require("webpack");
 
 const nextConfig = {
   env: {
@@ -17,28 +16,6 @@ const nextConfig = {
   },
   optimization: {
     runtimeChunk: "single",
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": '"development"',
-    }),
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "ts-loader",
-          options: {
-            transpileOnly: true,
-          },
-        },
-      },
-    ],
-  },
-  resolve: {
-    extensions: [".ts", ".js"],
   },
 };
 

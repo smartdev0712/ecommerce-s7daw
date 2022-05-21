@@ -79,7 +79,7 @@ const BlogDetails = ({ article, categories }) => {
                             <i className="ti-calendar" />
                             <a href="#">
                               <Moment format="MMM Do YYYY">
-                                {article.attributes.published_at}
+                                {article.attributes.createdAt}
                               </Moment>
                             </a>
                           </span>
@@ -118,7 +118,7 @@ const BlogDetails = ({ article, categories }) => {
                         </p>
                         <p className="uk-text-meta uk-margin-remove-top">
                           <Moment format="MMM Do YYYY">
-                            {article.attributes.published_at}
+                            {article.attributes.createdAt}
                           </Moment>
                         </p>
                       </div>

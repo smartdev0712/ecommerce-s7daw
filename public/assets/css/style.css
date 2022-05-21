@@ -3829,7 +3829,7 @@ h3.title {
   border-top: none;
 }
 
-.listing-details-wrapper .listing-faq-box .faq-accordian .card .card-header[aria-expanded] h3:after {
+.listing-details-wrapper .listing-faq-box .faq-accordian .card .card-header[aria-expanded] h4:after {
   float: right;
   content: "";
   font-family: "themify";
@@ -3837,7 +3837,7 @@ h3.title {
   margin-left: 15px;
 }
 
-.listing-details-wrapper .listing-faq-box .faq-accordian .card .card-header[aria-expanded=true] h3:after {
+.listing-details-wrapper .listing-faq-box .faq-accordian .card .card-header[aria-expanded=true] h4:after {
   content: "";
 }
 

@@ -6,7 +6,7 @@ import { fetchAPI } from "../../lib/api";
 import { toCamelCase } from "../utils";
 import { getStrapiMedia } from "../../lib/media";
 
-const BrandComponent = ({ category }) => {
+const BrandComponent = ({ category, city }) => {
   const [businesses, setBusiness] = useState("");
   const [cityName, setCity] = useState("");
 
@@ -29,7 +29,7 @@ const BrandComponent = ({ category }) => {
       setBusiness(businesses.data);
       setCity(city)
     })();
-  },[category]);
+  },[city]);
   return (
     <section className="products-area pt-50 pb-100">
       <div className="container">

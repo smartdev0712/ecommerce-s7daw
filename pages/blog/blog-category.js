@@ -5,6 +5,7 @@ import { fetchAPI } from "../../lib/api";
 import Seo from '../../components/seo'
 
 const blog = ({ articles, categories, homepage }) => {
+  console.log(articles)
   return (
     <Layout>
       <Seo seo={homepage.attributes.seo} />
@@ -28,7 +29,9 @@ const blog = ({ articles, categories, homepage }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { res } = context;
+  res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`) 
   // Run API calls in parallel
   const [articleRes, categoryRes, homepageRes] = await Promise.all([
     fetchAPI("/articles", { populate: ["image", "category", "writer"] }),

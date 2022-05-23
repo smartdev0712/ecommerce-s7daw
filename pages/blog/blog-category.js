@@ -5,7 +5,6 @@ import { fetchAPI } from "../../lib/api";
 import Seo from '../../components/seo'
 
 const blog = ({ articles, categories, homepage }) => {
-  console.log(articles)
   return (
     <Layout>
       <Seo seo={homepage.attributes.seo} />

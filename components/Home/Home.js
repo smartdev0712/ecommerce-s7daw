@@ -295,7 +295,7 @@ const HomeComponent = () => {
                 <div className="col-lg-3 col-md-4 col-sm-6" key={brand.id}>
                   <div className="listing-item listing-grid-item-two mb-30">
                     <div className="listing-thumbnail">
-                      <Link href={`/brand/${brand.attributes.slug}`}>
+                      <Link href={`/listing/${brand.attributes.slug}`}>
                         <a className="m-5">
                           <Image
                             src={getStrapiMedia(brand.attributes.business_logo)}
@@ -308,7 +308,7 @@ const HomeComponent = () => {
                     </div>
                     <div className="listing-content">
                       <h3 className="title">
-                        <Link href={`/brand/${brand.attributes.slug}`}>
+                        <Link href={`/listing/${brand.attributes.slug}`}>
                           <a>{brand.attributes.name}</a>
                         </Link>
                       </h3>

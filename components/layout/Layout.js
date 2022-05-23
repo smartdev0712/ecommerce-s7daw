@@ -79,6 +79,17 @@ const Layout = ({ children, category }) => {
       }
     };
   };
+    
+  const handleInfo = ({ city, province_id }) => {
+    setCookies("city", city)
+    setCookies("province_id", province_id)
+    const newCityInfo = {
+      city: city,
+      province_id: province_id
+    }
+    setCityInfo(newCityInfo)
+  }
+  
   useEffect(() => {
     animation();
     // niceSelect();
@@ -86,11 +97,6 @@ const Layout = ({ children, category }) => {
     window.addEventListener("scroll", stickyNav);
     getLocation();
   }, []);
-  
-  const handleInfo = ({ city, province_id }) => {
-    setCookies("city", city)
-    setCookies("province_id", province_id)
-  }
 
   return (
     <Fragment>

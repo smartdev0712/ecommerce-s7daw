@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import ReCaptcha from "react-google-recaptcha";
 import Autocomplete from "react-google-autocomplete"
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 import { getSlug } from "../components/utils";
 import http from "../components/http";
@@ -129,7 +130,7 @@ const AddListing = () => {
       }
     })
 
-    router.push('/listing-name')
+    router.push('/')
   }
 
   return (
@@ -192,6 +193,9 @@ const AddListing = () => {
                           apiKey={process.env.GOOGLE_API_KEY}
                           onPlaceSelected={(place) => {
                             console.log(place);
+                          }}
+                          options={{
+                            types: ["geocode", "establishment"],
                           }}
                         />
                       </div>

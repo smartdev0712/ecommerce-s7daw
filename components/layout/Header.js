@@ -17,8 +17,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { fetchAPI } from "../../lib/api";
 import { getSlug, toCamelCase } from "../utils";
 
-const Header = ({ category, cityInfo }) => {
+const Header = ({ category, cityInfo, setInfo }) => {
   const router = useRouter();
+
   const getDeliveryUrl = async (e) => {
     e.preventDefault();
     const value = toCamelCase(e.target.location.value);
@@ -36,6 +37,11 @@ const Header = ({ category, cityInfo }) => {
     } else {
       const city = getSlug(cityInfo.attributes.city_ascii);
       const province_id = cityInfo.attributes.province_id.toLowerCase();
+      const newCityInfo = {
+        province_id: province_id,
+        city: city
+      }
+      setInfo(newCityInfo)
       if (category !== undefined) {
         router.push(`/ca/${province_id}/${city}/${category}`);
       } else {

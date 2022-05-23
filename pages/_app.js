@@ -1,6 +1,7 @@
 import Head from "next/head";
 import App from "next/app";
 import React, { Fragment, useEffect, useState } from "react";
+import { CookiesProvider } from "react-cookie";
 import PreLoader from "../components/PreLoader";
 import { createContext } from "react";
 import { fetchAPI } from "../lib/api";
@@ -36,9 +37,11 @@ const MyApp = ({ Component, pageProps }) => {
           href={getStrapiMedia(global.attributes.favicon)}
         />
       </Head>
-      {loader && <PreLoader />}
+      {/* {loader && <PreLoader />} */}
       <GlobalContext.Provider value={global.attributes}>
-        <Component {...pageProps} />
+        <CookiesProvider>
+          <Component {...pageProps} />
+        </CookiesProvider>
       </GlobalContext.Provider>
     </Fragment>
   );

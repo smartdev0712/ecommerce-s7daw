@@ -56,7 +56,7 @@ const Footer = ({ cityInfo }) => {
               <Link href={`/ca/${cityInfo.province_id}/${cityInfo.city}/hardwood-floor-store`}>
                 <a className="footer-menu-item">HARDWOOD</a>
               </Link>
-              <Link href={`/ca/${cityInfo.province_id}/${cityInfo.city}/laminate-flooring-store`}>
+              <Link href={`/ca/${cityInfo.province_id}/${cityInfo.city}/laminate-floor-store`}>
                 <a className="footer-menu-item">LAMINATE</a>
               </Link>
               <Link href={`/ca/${cityInfo.province_id}/${cityInfo.city}/vinyl-floor-store`}>

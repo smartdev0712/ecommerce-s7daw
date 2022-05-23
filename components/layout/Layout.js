@@ -1,12 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import ImageView from "../ImageView";
 import Footer from "./Footer";
 import Header from "./Header";
 import MobileMenu from "./MobileMenu";
-import { activeNavMenu, animation, getSlug, niceSelect, stickyNav, autoFill } from "../utils";
+import { activeNavMenu, animation, getSlug, niceSelect, stickyNav } from "../utils";
 import { fetchAPI } from "../../lib/api";
 
 const Layout = ({ children, category }) => {
+  const [cookies, setCookies] = useCookies(["city", "province_id"])
   const [cityInfo, setCityInfo] = useState({
     city: "toronto",
     province_id: "on"
@@ -48,18 +50,29 @@ const Layout = ({ children, category }) => {
               populate: "*",
             });
             const cityInfoItem = cityInfoItems.data[0];
-            if (cityInfoItem == undefined) {
+            if (cookies.city != undefined) {
+              console.log('1');
               const currentCity = {
-                province_id: "on",
-                city: "toronto"
+                province_id: cookies.province_id,
+                city: cookies.city
               }
               setCityInfo(currentCity)
             } else {
-              const currentCity = {
-                province_id: cityInfoItem.attributes.province_id.toLowerCase(),
-                city: getSlug(cityInfoItem.attributes.city_ascii)
+              if (cityInfoItem == undefined) {
+                console.log(2);
+                const currentCity = {
+                  province_id: "on",
+                  city: "toronto"
+                }
+                setCityInfo(currentCity)
+              } else {
+                console.log(3);
+                const currentCity = {
+                  province_id: cityInfoItem.attributes.province_id.toLowerCase(),
+                  city: getSlug(cityInfoItem.attributes.city_ascii)
+                }
+                setCityInfo(currentCity)
               }
-              setCityInfo(currentCity)
             }
             return;
         }
@@ -72,13 +85,18 @@ const Layout = ({ children, category }) => {
     activeNavMenu();
     window.addEventListener("scroll", stickyNav);
     getLocation();
-    // autoFill();
   }, []);
+  
+  const handleInfo = ({ city, province_id }) => {
+    setCookies("city", city)
+    setCookies("province_id", province_id)
+  }
+
   return (
     <Fragment>
       <ImageView />
       <MobileMenu category={category} cityInfo={cityInfo} />
-      <Header category={category} cityInfo={cityInfo} />
+      <Header category={category} cityInfo={cityInfo} setInfo={handleInfo} />
       {children} <Footer cityInfo={cityInfo} />
     </Fragment>
   );

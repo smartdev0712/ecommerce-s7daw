@@ -37,7 +37,7 @@ const ServiceTemplateFooter = () => {
         about who’s available.
       </p>
       <div className="listing-faq-box mb-50 wow fadeInUp h5">
-        <Accordion className="faq-accordian mx-5" defaultActiveKey="">
+        <Accordion className="faq-accordian mx-5" defaultActiveKey="collapseOne">
           <div className="card">
             <Accordion.Toggle
               as="a"
@@ -65,6 +65,8 @@ const ServiceTemplateFooter = () => {
               </div>
             </Accordion.Collapse>
           </div>
+        </Accordion>
+        <Accordion className="faq-accordian mx-5" defaultActiveKey="collapseTwo">
           <div className="card">
             <Accordion.Toggle
               as="a"
@@ -86,6 +88,8 @@ const ServiceTemplateFooter = () => {
               </div>
             </Accordion.Collapse>
           </div>
+        </Accordion>
+        <Accordion className="faq-accordian mx-5" defaultActiveKey="collapseThree">
           <div className="card">
             <Accordion.Toggle
               as="a"
@@ -108,6 +112,8 @@ const ServiceTemplateFooter = () => {
               </div>
             </Accordion.Collapse>
           </div>
+        </Accordion>
+        <Accordion className="faq-accordian mx-5" defaultActiveKey="collapseFour">
           <div className="card">
             <Accordion.Toggle
               as="a"

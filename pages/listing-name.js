@@ -8,10 +8,12 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { getSlug } from "../components/utils";
 import http from "../components/http";
 import { fetchAPI } from '../lib/api';
+import PreLoader from '../components/PreLoader';
 
 const AddListing = () => {
   const router = useRouter()
   const [category, setCategory] = useState([])
+  // const [loader, setLoader] = useState(false)
 
   const handleCategory = async (e) => {
     if (e.target.checked) {
@@ -142,8 +144,14 @@ const AddListing = () => {
     router.push('/')
   }
 
+  // while (handleSubmit) {
+  //   setLoader(true)
+  // }
+  // setLoader(false)
   return (
     <Layout>
+      {/* {loader && <PreLoader />} */}
+      {/* {!loader &&  */}
       <section className="add-listing pt-120 pb-120">
         <div className="container">
           <form onSubmit={handleSubmit}>
@@ -626,6 +634,7 @@ const AddListing = () => {
           </form>
         </div>
       </section>
+      {/* } */}
     </Layout>
   );
 };

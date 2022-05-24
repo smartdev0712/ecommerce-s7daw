@@ -237,7 +237,7 @@ const Blog = ({ articles, categories }) => {
                     </li>
                   </ul>
                 </div>
-                <div className="widget add-widget mb-30 wow fadeInUp">
+                {/* <div className="widget add-widget mb-30 wow fadeInUp">
                   <div className="add-img-box">
                     <img
                       src="/assets/images/elements/add-1.jpg"
@@ -254,7 +254,7 @@ const Blog = ({ articles, categories }) => {
                   <a href="#">Architect</a>
                   <a href="#">Feature</a>
                   <a href="#">Modern</a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

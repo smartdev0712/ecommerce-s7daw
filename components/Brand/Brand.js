@@ -56,14 +56,14 @@ const BrandComponent = ({ category, city }) => {
             {/* <div className="col-lg-3">
               <ul className="list d-flex">
                 <li>
-                  <Link href="/products/product/#">
+                  <Link href="/products/product/">
                     <a>
                       <i className="ti-view-grid" />
                     </a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/products/product/#">
+                  <Link href="/products/product/">
                     <a className="active">
                       <i className="ti-view-list-alt" />
                     </a>
@@ -93,7 +93,7 @@ const BrandComponent = ({ category, city }) => {
                             />
                           </a>
                         </Link>
-                        {/* <a href="#" className="cat-btn">
+                        {/* <a href="/" className="cat-btn">
                           <i className="flaticon-chef" />
                         </a>
                         <ul className="ratings ratings-four">
@@ -114,7 +114,7 @@ const BrandComponent = ({ category, city }) => {
                           </li>
                           <li>
                             <span>
-                              <a href="#">(02 Reviews)</a>
+                              <a href="/">(02 Reviews)</a>
                             </span>
                           </li>
                         </ul> */}
@@ -152,7 +152,7 @@ const BrandComponent = ({ category, city }) => {
                             {/* <li>
                                   <span>
                                     <i className="ti-heart" />
-                                    <a href="#">Save</a>
+                                    <a href="/">Save</a>
                                   </span>
                                 </li> */}
                           </ul>
@@ -178,7 +178,7 @@ const BrandComponent = ({ category, city }) => {
                       />
                     </a>
                   </Link>
-                  <a href="#" className="cat-btn">
+                  <a href="/" className="cat-btn">
                     <i className="flaticon-chef" />
                   </a>
                   <span className="featured-btn">Featured</span>
@@ -200,7 +200,7 @@ const BrandComponent = ({ category, city }) => {
                     </li>
                     <li>
                       <span>
-                        <a href="#">(02 Reviews)</a>
+                        <a href="/">(02 Reviews)</a>
                       </span>
                     </li>
                   </ul>
@@ -228,7 +228,7 @@ const BrandComponent = ({ category, city }) => {
                       <li>
                         <span>
                           <i className="ti-heart" />
-                          <a href="#">Save</a>
+                          <a href="/">Save</a>
                         </span>
                       </li>
                     </ul>
@@ -240,7 +240,7 @@ const BrandComponent = ({ category, city }) => {
           {/* <div className="row">
             <div className="col-lg-12">
               <div className="button text-center mt-50 wow fadeInUp">
-                <Link href="#">
+                <Link href="/">
                   <a className="main-btn icon-btn">Load More</a>
                 </Link>
               </div>

@@ -17,7 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { fetchAPI } from "../../lib/api";
 import { getSlug } from "../utils";
 
-const MobileMenu = ({ category, cityInfo }) => {
+const MobileMenu = ({ category, cityInfo, setInfo }) => {
   const [toggle, setToggle] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
   const activeMenuSet = (value) =>
@@ -42,6 +42,11 @@ const MobileMenu = ({ category, cityInfo }) => {
     }
     const city = getSlug(cityInfo.attributes.city_ascii);
     const province_id = cityInfo.attributes.province_id.toLowerCase();
+    const newCityInfo = {
+      province_id: province_id,
+      city: city
+    }
+    setInfo(newCityInfo)
     if (category !== undefined) {
       router.push(`/ca/${province_id}/${city}/${category}`);
     } else {

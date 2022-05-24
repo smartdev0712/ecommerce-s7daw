@@ -66,7 +66,7 @@ const HomeComponent = () => {
                           />
                         </a>
                       </Link>
-                      {/* <a href="#" className="cat-btn">
+                      {/* <a href="/" className="cat-btn">
                         <i className="flaticon-chef" />
                       </a>
                       <span className="featured-btn">Featured</span>
@@ -88,16 +88,14 @@ const HomeComponent = () => {
                         </li>
                         <li>
                           <span>
-                            <a href="#">(01 Reviews)</a>
+                            <a href="/">(01 Reviews)</a>
                           </span>
                         </li>
                       </ul> */}
                     </div>
                     <div className="listing-content">
                       <h3 className="title">
-                        <Link href={`/listing/${brand.attributes.slug}`}>
-                          <a>{brand.attributes.name}</a>
-                        </Link>
+                          <a href={`/listing/${brand.attributes.slug}`}>{brand.attributes.name}</a>
                       </h3>
                       <span className="phone-meta">
                         <i className="ti-tablet" />
@@ -120,7 +118,7 @@ const HomeComponent = () => {
                           {/* <li>
                             <span>
                               <i className="ti-heart" />
-                              <a href="#">Save</a>
+                              <a href="/">Save</a>
                             </span>
                           </li> */}
                         </ul>

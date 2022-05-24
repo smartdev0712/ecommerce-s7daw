@@ -8,7 +8,7 @@ import { activeNavMenu, animation, getSlug, niceSelect, stickyNav } from "../uti
 import { fetchAPI } from "../../lib/api";
 
 const Layout = ({ children, category }) => {
-  const [cookies, setCookies] = useCookies(["city", "province_id"])
+  const [cookie, setCookie, removeCookie] = useCookies(["city", "province_id"])
   const [cityInfo, setCityInfo] = useState({
     city: "toronto",
     province_id: "on"
@@ -50,23 +50,20 @@ const Layout = ({ children, category }) => {
               populate: "*",
             });
             const cityInfoItem = cityInfoItems.data[0];
-            if (cookies.city != undefined) {
-              console.log('1');
+            if (cookie.city != undefined) {
               const currentCity = {
-                province_id: cookies.province_id,
-                city: cookies.city
+                province_id: cookie.province_id,
+                city: cookie.city
               }
               setCityInfo(currentCity)
             } else {
               if (cityInfoItem == undefined) {
-                console.log(2);
                 const currentCity = {
                   province_id: "on",
                   city: "toronto"
                 }
                 setCityInfo(currentCity)
               } else {
-                console.log(3);
                 const currentCity = {
                   province_id: cityInfoItem.attributes.province_id.toLowerCase(),
                   city: getSlug(cityInfoItem.attributes.city_ascii)
@@ -81,8 +78,10 @@ const Layout = ({ children, category }) => {
   };
     
   const handleInfo = ({ city, province_id }) => {
-    setCookies("city", city)
-    setCookies("province_id", province_id)
+    removeCookie("city", { path: '/'})
+    removeCookie("province_id", { path: '/'})
+    setCookie("city", city, { path: '/' })
+    setCookie("province_id", province_id, { path: '/' })
     const newCityInfo = {
       city: city,
       province_id: province_id
@@ -101,7 +100,7 @@ const Layout = ({ children, category }) => {
   return (
     <Fragment>
       <ImageView />
-      <MobileMenu category={category} cityInfo={cityInfo} />
+      <MobileMenu category={category} cityInfo={cityInfo} setInfo={handleInfo} />
       <Header category={category} cityInfo={cityInfo} setInfo={handleInfo} />
       {children} <Footer cityInfo={cityInfo} />
     </Fragment>

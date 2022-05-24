@@ -11,7 +11,7 @@ import { fetchAPI } from "../../lib/api";
 const Name = () => {
   const { query } = useRouter()
   const [business, setBusiness] = useState("")
-  console.log(query['slug'])
+  
   useEffect(() => {
     (async () => {
       const businessesRes = await fetchAPI("/businesses", {
@@ -23,7 +23,6 @@ const Name = () => {
       setBusiness(businessesRes.data[0]);
     })();
   }, []);
-  console.log(business)
 
   return (
     <Layout>

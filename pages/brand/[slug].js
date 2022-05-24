@@ -1,15 +1,30 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { Accordion, Tab, Nav } from "react-bootstrap";
 import ListingDetailsRight from "../../components/ListingDetailsRight";
 import Layout from "../../components/layout/Layout";
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
 
-const Name = ({ business }) => {
+const Name = () => {
+  const { query } = useRouter()
+  const [business, setBusiness] = useState("")
+  useEffect(() => {
+    (async () => {
+      const businessesRes = await fetchAPI("/businesses", {
+        filters: {
+          slug: query['slug'],
+        },
+        populate: "*",
+      });
+      setBusiness(businessesRes.data[0]);
+    })();
+  }, [])
   return (
     <Layout>
+      {business && <>
       <section className="page-breadcrumbs page-breadcrumbs-one pt-120 pb-70">
         <div className="container">
           <div className="breadcrumbs-wrapper-one">
@@ -80,7 +95,7 @@ const Name = ({ business }) => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6">
+              {/* <div className="col-lg-3 col-md-6">
                 <div className="button">
                   <Link href="">
                     <a className="icon-btn">
@@ -93,7 +108,7 @@ const Name = ({ business }) => {
                     </a>
                   </Link>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -110,13 +125,13 @@ const Name = ({ business }) => {
                   <p>
                     {business.attributes.description}
                   </p>
-                  <p className="para">
+                  {/* <p className="para">
                     Eros senectus etiam sed habitasse arcu habitant nulla nam
                     amet sociis leo suspendisse in dignissim litora venenatis
                     torquent tempor dapibus ridiculus consectetuer nece sagittis{" "}
-                  </p>
+                  </p> */}
                 </div>
-                <div className="listing-features-box mb-50 wow fadeInUp">
+                {/* <div className="listing-features-box mb-50 wow fadeInUp">
                   <h4 className="title">Our Features</h4>
                   <div className="row">
                     <div className="col-lg-4 col-md-6 col-sm-12">
@@ -710,42 +725,44 @@ const Name = ({ business }) => {
                       </Tab.Container>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <ListingDetailsRight business={business} />
           </div>
         </div>
       </section>
+      </>
+      }
     </Layout>
   );
 };
 
-export async function getStaticPaths() {
-  const businessesRes = await fetchAPI("/businesses", { fields: ["slug"] });
+// export async function getStaticPaths() {
+//   const businessesRes = await fetchAPI("/businesses", { fields: ["slug"] });
 
-  return {
-    paths: businessesRes.data.map((business) => ({
-      params: {
-        slug: business.attributes.slug,
-      },
-    })),
-    fallback: false,
-  };
-}
+//   return {
+//     paths: businessesRes.data.map((business) => ({
+//       params: {
+//         slug: business.attributes.slug,
+//       },
+//     })),
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  const businessesRes = await fetchAPI("/businesses", {
-    filters: {
-      slug: params.slug,
-    },
-    populate: "*",
-  });
+// export async function getStaticProps({ params }) {
+//   const businessesRes = await fetchAPI("/businesses", {
+//     filters: {
+//       slug: params.slug,
+//     },
+//     populate: "*",
+//   });
 
-  return {
-    props: { business: businessesRes.data[0] },
-    revalidate: 1,
-  };
-}
+//   return {
+//     props: { business: businessesRes.data[0] },
+//     revalidate: 1,
+//   };
+// }
 
 export default Name;

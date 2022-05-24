@@ -1,16 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Moment from "react-moment";
 import ReactMarkdown from "react-markdown";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Layout from "../../components/layout/Layout";
 import Seo from "../../components/seo";
 import { fetchAPI } from "../../lib/api";
 import { getStrapiMedia } from "../../lib/media";
 
-const BlogDetails = ({ article, categories }) => {
+const BlogDetails = ({ categories }) => {
   const imageUrl = getStrapiMedia(article.attributes.image);
+  const { query } = useRouter()
 
   const seo = {
     metaTitle: article.attributes.title,
@@ -18,6 +20,20 @@ const BlogDetails = ({ article, categories }) => {
     shareImage: article.attributes.image,
     article: true,
   };
+
+  const [article, setArticle] = useState('')
+  useEffect(() => {
+    (async () => {
+      const articlesRes = await fetchAPI("/articles", {
+        filters: {
+          slug: query['slug'],
+        },
+        populate: ["image", "category", "writer.picture"],
+      });
+    
+      setArticle(articlesRes.data[0]);
+    })();
+  }, [])
   return (
     <Layout>
       <Seo seo={seo} />
@@ -39,6 +55,7 @@ const BlogDetails = ({ article, categories }) => {
           </div>
         </div>
       </div>
+      {article && 
       <section className="blog-area pt-120 pb-90">
         <div className="container">
           <div className="row">
@@ -413,35 +430,29 @@ const BlogDetails = ({ article, categories }) => {
           </div>
         </div>
       </section>
+      }
     </Layout>
   );
 };
 
-export async function getStaticPaths() {
-  const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
+// export async function getStaticPaths() {
+//   const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
 
-  return {
-    paths: articlesRes.data.map((article) => ({
-      params: {
-        slug: article.attributes.slug,
-      },
-    })),
-    fallback: false,
-  };
-}
+//   return {
+//     paths: articlesRes.data.map((article) => ({
+//       params: {
+//         slug: article.attributes.slug,
+//       },
+//     })),
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  const articlesRes = await fetchAPI("/articles", {
-    filters: {
-      slug: params.slug,
-    },
-    populate: ["image", "category", "writer.picture"],
-  });
-
+export async function getStaticProps() {
   const categories = await fetchAPI("/categories");
 
   return {
-    props: { article: articlesRes.data[0], categories: categories },
+    props: { categories: categories },
     revalidate: 1,
   };
 }

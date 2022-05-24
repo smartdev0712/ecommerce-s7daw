@@ -9,6 +9,7 @@ import Layout from "../../components/layout/Layout";
 import Seo from "../../components/seo";
 import { fetchAPI } from "../../lib/api";
 import { getStrapiMedia } from "../../lib/media";
+import ImageView from "../../components/image";
 
 const BlogDetails = ({ categories }) => {
   const { query } = useRouter()
@@ -26,18 +27,21 @@ const BlogDetails = ({ categories }) => {
       setArticle(articlesRes.data[0]);
     })();
   }, [])
-  const imageUrl = getStrapiMedia(article.attributes.image);
-  
-  const seo = {
-    metaTitle: article.attributes.title,
-    metaDescription: article.attributes.description,
-    shareImage: article.attributes.image,
-    article: true,
-  };
+  var seo = {}
+  if (article) {
+    seo = {
+      metaTitle: article.attributes.title,
+      metaDescription: article.attributes.description,
+      shareImage: article.attributes.image,
+      article: true,
+    };
+}
 
   return (
     <Layout>
-      <Seo seo={seo} />
+      {seo && 
+        <Seo seo={seo} />
+      }
       <div className="home-header">
         <img
           src="/assets/images/flooring-banner.jpg"
@@ -64,7 +68,7 @@ const BlogDetails = ({ categories }) => {
               <div className="blog-details-wrapper mb-30 wow fadeInUp">
                 <div className="blog-post-item">
                   <div className="post-thumbnail">
-                    <img src={imageUrl} alt="Blog Image" />
+                    <ImageView image={article.attributes.image} />
                   </div>
                   <div className="entry-content">
                     <div className="post-meta">
@@ -449,7 +453,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ params }) {
   const categories = await fetchAPI("/categories");
 
   return {

@@ -11,15 +11,7 @@ import { fetchAPI } from "../../lib/api";
 import { getStrapiMedia } from "../../lib/media";
 
 const BlogDetails = ({ categories }) => {
-  const imageUrl = getStrapiMedia(article.attributes.image);
   const { query } = useRouter()
-
-  const seo = {
-    metaTitle: article.attributes.title,
-    metaDescription: article.attributes.description,
-    shareImage: article.attributes.image,
-    article: true,
-  };
 
   const [article, setArticle] = useState('')
   useEffect(() => {
@@ -34,6 +26,15 @@ const BlogDetails = ({ categories }) => {
       setArticle(articlesRes.data[0]);
     })();
   }, [])
+  const imageUrl = getStrapiMedia(article.attributes.image);
+  
+  const seo = {
+    metaTitle: article.attributes.title,
+    metaDescription: article.attributes.description,
+    shareImage: article.attributes.image,
+    article: true,
+  };
+  
   return (
     <Layout>
       <Seo seo={seo} />

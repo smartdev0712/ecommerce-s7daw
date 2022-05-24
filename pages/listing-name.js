@@ -32,11 +32,20 @@ const AddListing = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
-    const email = e.target.email.value;
+    let email = ""
+    if (e.target.email.value) {
+      email = e.target.email.value;
+    }
     const address = e.target.address.value;
     const phone = e.target.phone.value;
-    const website = e.target.website.value;
-    const tagline = e.target.tagline.value;
+    let website = ""
+    if (e.target.website.value) {
+      website = e.target.website.value;
+    }
+    let tagline = ""
+    if (e.target.tagline.value) {
+      tagline = e.target.tagline.value;
+    }
     const description = e.target.description.value;
     const contact_email = e.target.contact_email.value;
     const image = e.target.Image.files[0];

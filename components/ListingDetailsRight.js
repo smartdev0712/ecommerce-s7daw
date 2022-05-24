@@ -88,10 +88,12 @@ const ListingDetailsRight = ({ business }) => {
                   <i className="ti-email" />
                   <a href={`mailto:${business.attributes.contact_email}`}>{business.attributes.contact_email}</a>
                 </p>
+                {business.attributes.website && 
                 <p>
                   <i className="ti-world" />
                   <a href={business.attributes.website}>{business.attributes.website}</a>
                 </p>
+                }
               </div>
             </div>
           </div>

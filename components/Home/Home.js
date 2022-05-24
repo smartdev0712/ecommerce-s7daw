@@ -56,7 +56,8 @@ const HomeComponent = () => {
                 <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
                   <div className="listing-item listing-grid-item-two mb-30">
                     <div className="listing-thumbnail">
-                        <a href={`/listing/${brand.attributes.slug}`} className="m-5">
+                      <Link href={`/listing/${brand.attributes.slug}`}>
+                        <a className="m-5">
                           <Image
                             src={getStrapiMedia(brand.attributes.business_logo)}
                             alt="Listing Image"
@@ -64,7 +65,10 @@ const HomeComponent = () => {
                             height="195px"
                           />
                         </a>
-                      {/* 
+                      </Link>
+                      {/* <a href="#" className="cat-btn">
+                        <i className="flaticon-chef" />
+                      </a>
                       <span className="featured-btn">Featured</span>
                       <ul className="ratings ratings-five">
                         <li className="star">
@@ -84,13 +88,16 @@ const HomeComponent = () => {
                         </li>
                         <li>
                           <span>
+                            <a href="#">(01 Reviews)</a>
                           </span>
                         </li>
                       </ul> */}
                     </div>
                     <div className="listing-content">
                       <h3 className="title">
-                          <a href={`/listing/${brand.attributes.slug}`}>{brand.attributes.name}</a>
+                        <Link href={`/listing/${brand.attributes.slug}`}>
+                          <a>{brand.attributes.name}</a>
+                        </Link>
                       </h3>
                       <span className="phone-meta">
                         <i className="ti-tablet" />
@@ -110,7 +117,12 @@ const HomeComponent = () => {
                               , CANADA
                             </span>
                           </li>
-                          
+                          {/* <li>
+                            <span>
+                              <i className="ti-heart" />
+                              <a href="#">Save</a>
+                            </span>
+                          </li> */}
                         </ul>
                       </div>
                     </div>
@@ -146,7 +158,8 @@ const HomeComponent = () => {
                 <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
                   <div className="listing-item listing-grid-item-two mb-30">
                     <div className="listing-thumbnail">
-                        <a href={`/listing/${brand.attributes.slug}`} className="m-5">
+                      <Link href={`/listing/${brand.attributes.slug}`}>
+                        <a className="m-5">
                           <Image
                             src={getStrapiMedia(brand.attributes.business_logo)}
                             alt="Listing Image"
@@ -154,10 +167,13 @@ const HomeComponent = () => {
                             height="195px"
                           />
                         </a>
+                      </Link>
                     </div>
                     <div className="listing-content">
                       <h3 className="title">
-                          <a href={`/listing/${brand.attributes.slug}`}>{brand.attributes.name}</a>
+                        <Link href={`/listing/${brand.attributes.slug}`}>
+                          <a>{brand.attributes.name}</a>
+                        </Link>
                       </h3>
                       <span className="phone-meta">
                         <i className="ti-tablet" />
@@ -211,7 +227,8 @@ const HomeComponent = () => {
                 <div className="col-lg-3 col-md-4 col-sm-6" key={brand.id}>
                   <div className="listing-item listing-grid-item-two mb-30">
                     <div className="listing-thumbnail">
-                        <a href={`/listing/${brand.attributes.slug}`} className="m-5">
+                      <Link href={`/listing/${brand.attributes.slug}`}>
+                        <a className="m-5">
                           <Image
                             src={getStrapiMedia(brand.attributes.business_logo)}
                             alt="Listing Image"
@@ -219,10 +236,13 @@ const HomeComponent = () => {
                             height="195px"
                           />
                         </a>
+                      </Link>
                     </div>
                     <div className="listing-content">
                       <h3 className="title">
-                          <a href={`/listing/${brand.attributes.slug}`}>{brand.attributes.name}</a>
+                        <Link href={`/listing/${brand.attributes.slug}`}>
+                          <a>{brand.attributes.name}</a>
+                        </Link>
                       </h3>
                       <span className="phone-meta">
                         <i className="ti-tablet" />

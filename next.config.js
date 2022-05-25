@@ -12,7 +12,7 @@ const nextConfig = {
     loader: "default",
     domains: [
       "localhost",
-      "strapi-floor-metaverse-ww5pg.ondigitalocean.app",
+      "floors-app-lz6o6.ondigitalocean.app",
       "cloudinary.com",
       "res.cloudinary.com",
     ],

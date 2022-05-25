@@ -32,7 +32,11 @@ const AddListing = () => {
   }
 
   const handleSubmit = async (e) => {
+    // setLoader(true)
     e.preventDefault();
+
+    // let errorFlag = false
+
     const name = e.target.name.value;
     let email = ""
     if (e.target.email.value) {
@@ -72,6 +76,7 @@ const AddListing = () => {
         })
         .catch((error) => {
           console.log(error)
+          // setLoader(false)
         })
     }
 
@@ -87,6 +92,7 @@ const AddListing = () => {
         })
         .catch((error) => {
           console.log(error)
+          // setLoader(false)
         })
     }
     
@@ -98,6 +104,8 @@ const AddListing = () => {
 
     if (cityRes.data[0] == "" || cityRes.data[0] == undefined) {
       alert("Please select a city correctly")
+      // setLoader(false)
+      // errorFlag = true
     }
 
     let imageID = ""
@@ -117,41 +125,50 @@ const AddListing = () => {
       })
       .catch(error => {
         console.log(error);
+        // setLoader(false)
+        // errorFlag = true
+        // alert("Please upload your business logo")
       })
 
-    await http.post('/api/businesses',{
-      "data": {
-        "name": name,
-        "email": email,
-        "address": address,
-        "phone_number": phone,
-        "website": website,
-        "tagline": tagline,
-        "description": description,
-        "contact_email": contact_email,
-        "slug": slug,
-        "business_logo": imageID,
-        "services": serviceRes,
-        "canada_city": cityRes.data[0],
-        "service_categories": categoryRes,
-      }
-    }, {
-      headers: {
-        Authorization: `Bearer ${login.data.jwt}`
-      }
-    })
-
-    router.push('/')
+    // if (!errorFlag) {
+      await http.post('/api/businesses',{
+        "data": {
+          "name": name,
+          "email": email,
+          "address": address,
+          "phone_number": phone,
+          "website": website,
+          "tagline": tagline,
+          "description": description,
+          "contact_email": contact_email,
+          "slug": slug,
+          "business_logo": imageID,
+          "services": serviceRes,
+          "canada_city": cityRes.data[0],
+          "service_categories": categoryRes,
+        }
+      }, {
+        headers: {
+          Authorization: `Bearer ${login.data.jwt}`
+        }
+      })
+        // .catch((error) => {
+        //   setLoader(false)
+        //   errorFlag = true
+        //   alert("Error occured. Try again")
+        //   router.push('/listing-name')
+        // })
+    // }
+    // setLoader(false)
+    // if (!errorFlag) {
+      router.push('/')
+    // }
   }
 
-  // while (handleSubmit) {
-  //   setLoader(true)
-  // }
-  // setLoader(false)
   return (
     <Layout>
-      {/* {loader && <PreLoader />} */}
-      {/* {!loader &&  */}
+      {/* {loader && <PreLoader />}
+      {loader == false &&  */}
       <section className="add-listing pt-120 pb-120">
         <div className="container">
           <form onSubmit={handleSubmit}>

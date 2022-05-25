@@ -11,10 +11,11 @@ import { fetchAPI } from "../../lib/api";
 import { getStrapiMedia } from "../../lib/media";
 import ImageView from "../../components/image";
 
-const BlogDetails = ({ categories }) => {
+const BlogDetails = () => {
   const { query } = useRouter()
 
   const [article, setArticle] = useState('')
+  const [categories, setCategories] = useState("")
   useEffect(() => {
     (async () => {
       const articlesRes = await fetchAPI("/articles", {
@@ -23,7 +24,10 @@ const BlogDetails = ({ categories }) => {
         },
         populate: ["image", "category", "writer.picture"],
       });
-    
+
+      const categories = await fetchAPI("/categories");
+      
+      setCategories(categories);    
       setArticle(articlesRes.data[0]);
     })();
   }, [])
@@ -146,7 +150,7 @@ const BlogDetails = ({ categories }) => {
                       </div>
                     </div>
                     <div className="post-tag">
-                      {categories.data.map((category, index) => {
+                      {categories && categories.data.map((category, index) => {
                         return (
                           <a key={index} href="#">
                             {category.attributes.name}
@@ -440,25 +444,4 @@ const BlogDetails = ({ categories }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
-
-  return {
-    paths: articlesRes.data.map((article) => ({
-      params: {
-        slug: article.attributes.slug,
-      },
-    })),
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const categories = await fetchAPI("/categories");
-
-  return {
-    props: { categories: categories },
-    revalidate: 1,
-  };
-}
 export default BlogDetails;

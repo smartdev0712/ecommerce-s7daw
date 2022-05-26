@@ -13,7 +13,7 @@ import PreLoader from '../components/PreLoader';
 const AddListing = () => {
   const router = useRouter()
   const [category, setCategory] = useState([])
-  // const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(false)
 
   const handleCategory = async (e) => {
     if (e.target.checked) {
@@ -32,10 +32,10 @@ const AddListing = () => {
   }
 
   const handleSubmit = async (e) => {
-    // setLoader(true)
+    setLoader(true)
     e.preventDefault();
 
-    // let errorFlag = false
+    let errorFlag = false
 
     const name = e.target.name.value;
     let email = ""
@@ -76,7 +76,7 @@ const AddListing = () => {
         })
         .catch((error) => {
           console.log(error)
-          // setLoader(false)
+          setLoader(false)
         })
     }
 
@@ -92,7 +92,7 @@ const AddListing = () => {
         })
         .catch((error) => {
           console.log(error)
-          // setLoader(false)
+          setLoader(false)
         })
     }
     
@@ -104,8 +104,8 @@ const AddListing = () => {
 
     if (cityRes.data[0] == "" || cityRes.data[0] == undefined) {
       alert("Please select a city correctly")
-      // setLoader(false)
-      // errorFlag = true
+      setLoader(false)
+      errorFlag = true
     }
 
     let imageID = ""
@@ -125,12 +125,12 @@ const AddListing = () => {
       })
       .catch(error => {
         console.log(error);
-        // setLoader(false)
-        // errorFlag = true
-        // alert("Please upload your business logo")
+        setLoader(false)
+        errorFlag = true
+        alert("Please upload your business logo")
       })
 
-    // if (!errorFlag) {
+    if (!errorFlag) {
       await http.post('/api/businesses',{
         "data": {
           "name": name,
@@ -152,23 +152,23 @@ const AddListing = () => {
           Authorization: `Bearer ${login.data.jwt}`
         }
       })
-        // .catch((error) => {
-        //   setLoader(false)
-        //   errorFlag = true
-        //   alert("Error occured. Try again")
-        //   router.push('/listing-name')
-        // })
-    // }
-    // setLoader(false)
-    // if (!errorFlag) {
+        .catch((error) => {
+          setLoader(false)
+          errorFlag = true
+          alert("Error occured. Try again")
+          router.push('/listing-name')
+        })
+    }
+    setLoader(false)
+    if (!errorFlag) {
       router.push('/')
-    // }
+    }
   }
 
   return (
     <Layout>
-      {/* {loader && <PreLoader />}
-      {loader == false &&  */}
+      {loader && <PreLoader />}
+      {loader == false && 
       <section className="add-listing pt-120 pb-120">
         <div className="container">
           <form onSubmit={handleSubmit}>
@@ -651,7 +651,7 @@ const AddListing = () => {
           </form>
         </div>
       </section>
-      {/* } */}
+      }
     </Layout>
   );
 };
